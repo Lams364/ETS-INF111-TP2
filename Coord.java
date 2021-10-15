@@ -8,7 +8,7 @@
 public class Coord {
 
 	/*
-	 * Les attributs conserv�s.
+	 * Les attributs conserves.
 	 */
 	int ligne;
 	int colonne;
