@@ -16,8 +16,7 @@ public class Navire {
     Coord coordDebut;
     Coord coordFin;
     String orientation;
-
-    // vérifier s'il ne faut pas mettre les attributs de coordDebut et coordFin ici
+    ArrayList<Coord> listeCoordonnes = new ArrayList<Coord>();
 
     public Navire (String nom, Coord debut, Coord fin, Color couleur){
 
@@ -50,6 +49,7 @@ public class Navire {
             this.orientation = EW;
             this.longueur = nbColonne;
         }
+        this.listeCoordonnes  = getTousLesCoordsNavire(this);
 
     }
 
@@ -77,22 +77,30 @@ public class Navire {
 
         if (!this.estCoule()){
             if(!this.dejaRecuTir(tir)){
-                //boucle de recherche
-                    //si le tir touche au navire actuel (fonction privée)
+                    if(positionTouche(tir)) {
                         this.coupsTouches.add(tir);
                         aToucheNavire = true;
+                    }
             }
         }
         return aToucheNavire;
     }
 
-    public boolean chevauche(Navire navire){
+    public boolean chevauche(Navire navireAutre){
 
         /* peut être se servir de la fonction getTousLesCoordsNavire() ?
          il faut comparer tous les coordonnes une à une afin de savoir si les deux navires se
          croisent */
 
+        //liste de tous les points du navire entré en paramètre
+        ArrayList<Coord> coordsNavireAutre = getTousLesCoordsNavire(navireAutre);
 
+        //pour tous les points dans la liste coordsNavireAutre
+        for (Coord point : coordsNavireAutre){
+            //si le point est trouvé dans la liste des points, c'est qu'il se chevauche.
+            //on retourne donc true.
+            if (this.listeCoordonnes.contains(point)) return true;
+        }
         return false;
     }
 
@@ -103,27 +111,27 @@ public class Navire {
      * fonction que j'ai decider de faire moi-mêmes puisque je sais que je pourrai m'en servir
      * dans les autres sous programmes. J.L.
      */
-    private ArrayList<Coord> getTousLesCoordsNavire(){
+    private ArrayList<Coord> getTousLesCoordsNavire(Navire navire){
 
         Coord coordTemporaire = new Coord();
         ArrayList<Coord> listeCoordNavire = new ArrayList<Coord>();
 
         // si le navire est verticale
-        if (this.orientation.equals(NS)){
+        if (navire.orientation.equals(NS)){
 
 
-            for (int i = 0; i < this.longueur; i++){
+            for (int i = 0; i < navire.longueur; i++){
 
-                coordTemporaire.ligne = this.coordDebut.ligne + i;
-                coordTemporaire.colonne = this.coordDebut.colonne;
+                coordTemporaire.ligne = navire.coordDebut.ligne + i;
+                coordTemporaire.colonne = navire.coordDebut.colonne;
 
                 listeCoordNavire.add(coordTemporaire);
             }
         } else {
-            for (int i = 0; i < this.longueur; i++){
+            for (int i = 0; i < navire.longueur; i++){
 
-                coordTemporaire.ligne = this.coordDebut.ligne;
-                coordTemporaire.colonne = this.coordDebut.colonne + i;
+                coordTemporaire.ligne = navire.coordDebut.ligne;
+                coordTemporaire.colonne = navire.coordDebut.colonne + i;
 
                 listeCoordNavire.add(coordTemporaire);
             }
@@ -131,6 +139,10 @@ public class Navire {
         return listeCoordNavire;
     }
 
+    private boolean positionTouche(Coord tir){
+
+        return this.listeCoordonnes.contains(tir);
+    }
 
 
 
