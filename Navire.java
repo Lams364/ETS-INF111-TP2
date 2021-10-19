@@ -27,11 +27,14 @@ public class Navire {
         // gerer tous les exceptions possibles ici
         if (nbLigne > 1 && (debut.colonne != fin.colonne)){
             throw new IllegalArgumentException("Coordonnées NORD_SUD invalide");
+
         } else if (nbColonne > 1 && (debut.ligne != fin.ligne)){
             throw new IllegalArgumentException("Coordonnées EST_OUEST invalide");
+
         } else if ((debut.ligne > fin.ligne) || (debut.ligne > Constantes.TAILLE
                 || fin.ligne > Constantes.TAILLE)){
             throw new IllegalArgumentException("Ligne invalide");
+            
         } else if ((debut.colonne > fin.colonne) || (debut.colonne > Constantes.TAILLE
                 || fin.colonne > Constantes.TAILLE)){
             throw new IllegalArgumentException("Colonne invalide");
@@ -49,7 +52,7 @@ public class Navire {
             orientation = EW;
             longueur = nbColonne;
         }
-        listeCoordonnes  = getTousLesCoordsNavire(this);
+        listeCoordonnes  = getCoordonnes();
 
     }
 
@@ -75,8 +78,8 @@ public class Navire {
 
         boolean aToucheNavire = false;
 
-        if (!this.estCoule()){
-            if(!this.dejaRecuTir(tir)){
+        if (!estCoule()){
+            if(!dejaRecuTir(tir)){
                     if(positionTouche(tir)) {
                         coupsTouches.add(tir);
                         aToucheNavire = true;
@@ -85,21 +88,15 @@ public class Navire {
         }
         return aToucheNavire;
     }
+    
 
     public boolean chevauche(Navire navireAutre){
 
-        /* peut être se servir de la fonction getTousLesCoordsNavire() ?
-         il faut comparer tous les coordonnes une à une afin de savoir si les deux navires se
-         croisent */
-
-        //liste de tous les points du navire entré en paramètre
-        ArrayList<Coord> coordsNavireAutre = getTousLesCoordsNavire(navireAutre);
-
         //pour tous les points dans la liste coordsNavireAutre
-        for (Coord point : coordsNavireAutre){
+        for (Coord point : navireAutre.listeCoordonnes){
             //si le point est trouvé dans la liste des points, c'est qu'il se chevauche.
             //on retourne donc true.
-            if (listeCoordonnes.contains(point)) return true;
+            if (this.listeCoordonnes.contains(point)) return true;
         }
         return false;
     }
@@ -111,27 +108,27 @@ public class Navire {
      * fonction que j'ai decider de faire moi-mêmes puisque je sais que je pourrai m'en servir
      * dans les autres sous programmes. J.L.
      */
-    private ArrayList<Coord> getTousLesCoordsNavire(Navire navire){
+    private ArrayList<Coord> getCoordonnes(){
 
         Coord coordTemporaire = new Coord();
         ArrayList<Coord> listeCoordNavire = new ArrayList<Coord>();
 
         // si le navire est verticale
-        if (navire.orientation.equals(NS)){
+        if (orientation.equals(NS)){
 
 
-            for (int i = 0; i < navire.longueur; i++){
+            for (int i = 0; i < longueur; i++){
 
-                coordTemporaire.ligne = navire.coordDebut.ligne + i;
-                coordTemporaire.colonne = navire.coordDebut.colonne;
+                coordTemporaire.ligne = coordDebut.ligne + i;
+                coordTemporaire.colonne = coordDebut.colonne;
 
                 listeCoordNavire.add(coordTemporaire);
             }
         } else {
-            for (int i = 0; i < navire.longueur; i++){
+            for (int i = 0; i < longueur; i++){
 
-                coordTemporaire.ligne = navire.coordDebut.ligne;
-                coordTemporaire.colonne = navire.coordDebut.colonne + i;
+                coordTemporaire.ligne = coordDebut.ligne;
+                coordTemporaire.colonne = coordDebut.colonne + i;
 
                 listeCoordNavire.add(coordTemporaire);
             }
@@ -142,6 +139,11 @@ public class Navire {
     private boolean positionTouche(Coord tir){
 
         return listeCoordonnes.contains(tir);
+    }
+
+    public boolean estDansLaGrille(){
+        return (coordDebut.colonne <= Constantes.TAILLE && coordDebut.ligne <= Constantes.TAILLE
+                && coordFin.colonne <= Constantes.TAILLE && coordFin.ligne <= Constantes.TAILLE);
     }
 
 
