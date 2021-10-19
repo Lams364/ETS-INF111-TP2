@@ -10,7 +10,7 @@ public class Flotte {
 
     public boolean dejaRecuCoup(Coord tir){
 
-        for (Navire navireCourant : this.collectionDeNavires) {
+        for (Navire navireCourant : collectionDeNavires) {
             if (navireCourant.dejaRecuTir(tir)) return true;
         }
         return false;
@@ -18,18 +18,18 @@ public class Flotte {
 
     public boolean jeuTermine(){
 
-        for (Navire navireCourant : this.collectionDeNavires) {
+        for (Navire navireCourant : collectionDeNavires) {
             if (!navireCourant.estCoule()) return false;
         }
         return true;
     }
 
     public Navire[] getTabNavires(){
-        return this.collectionDeNavires.toArray(new Navire[0]);//à  confirmer
+        return collectionDeNavires.toArray(new Navire[0]); // à confirmer
     }
 
     public boolean leTirTouche(Coord tir){
-        for (Navire navireCourant : this.collectionDeNavires) {
+        for (Navire navireCourant : collectionDeNavires) {
             if (navireCourant.tirAtouche(tir)) return true;
         }
         return false;
@@ -37,8 +37,9 @@ public class Flotte {
 
     private int ajouterNavire(Navire navire){
 
+        
 
-
+        return 0;
     }
 
 

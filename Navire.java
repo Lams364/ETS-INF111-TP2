@@ -38,18 +38,18 @@ public class Navire {
         }
 
         this.nom = nom;
-        this.coordDebut = debut;
-        this.coordFin = fin;
         this.couleur = couleur;
+        coordDebut = debut;
+        coordFin = fin;
 
         if (nbLigne > nbColonne){
-            this.orientation = NS;
-            this.longueur = nbLigne;
+            orientation = NS;
+            longueur = nbLigne;
         } else {
-            this.orientation = EW;
-            this.longueur = nbColonne;
+            orientation = EW;
+            longueur = nbColonne;
         }
-        this.listeCoordonnes  = getTousLesCoordsNavire(this);
+        listeCoordonnes  = getTousLesCoordsNavire(this);
 
     }
 
@@ -63,12 +63,12 @@ public class Navire {
                 listeTemporaireCoupsTouche.add(i);
             }
         }
-        return listeTemporaireCoupsTouche.size() == this.longueur; // >= ou == ???
+        return listeTemporaireCoupsTouche.size() == longueur; // >= ou == ???
     }
 
     public boolean dejaRecuTir(Coord tir){
 
-        return this.coupsTouches.contains(tir);
+        return coupsTouches.contains(tir);
     }
 
     public boolean tirAtouche(Coord tir){
@@ -78,7 +78,7 @@ public class Navire {
         if (!this.estCoule()){
             if(!this.dejaRecuTir(tir)){
                     if(positionTouche(tir)) {
-                        this.coupsTouches.add(tir);
+                        coupsTouches.add(tir);
                         aToucheNavire = true;
                     }
             }
@@ -99,7 +99,7 @@ public class Navire {
         for (Coord point : coordsNavireAutre){
             //si le point est trouvé dans la liste des points, c'est qu'il se chevauche.
             //on retourne donc true.
-            if (this.listeCoordonnes.contains(point)) return true;
+            if (listeCoordonnes.contains(point)) return true;
         }
         return false;
     }
@@ -141,7 +141,7 @@ public class Navire {
 
     private boolean positionTouche(Coord tir){
 
-        return this.listeCoordonnes.contains(tir);
+        return listeCoordonnes.contains(tir);
     }
 
 
