@@ -146,6 +146,22 @@ public class Navire {
                 && coordFin.colonne <= Constantes.TAILLE && coordFin.ligne <= Constantes.TAILLE);
     }
 
+    public String toString(){
+
+        String message = new String();
+
+        message += "Nom : " + nom;
+        message += "\nLongueur : " + longueur;
+        message += "\nOrientation : " + orientation;
+        message += "\nCoordonneDebut : " + coordDebut;
+        message += "\nCoordonneFin : " + coordFin;
+        message += "\nListe de coups touches : " + coupsTouches.toString()+"\n\n";
+
+
+
+
+        return message;
+    }
 
 
 

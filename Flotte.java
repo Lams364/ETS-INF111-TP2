@@ -15,15 +15,12 @@ public class Flotte {
     public final int EST = 3;
     public final int OUEST = 4;
 
-    ArrayList<Navire> collectionDeNavires = new ArrayList<>();
+    public ArrayList<Navire> collectionDeNavires = new ArrayList<>();
 
     public Flotte(){
         ArrayList<Navire> collectionDeNavires = new ArrayList<>();
     }
 
-    public Flotte(int aleatoire){
-        genererPosNavireAleaInsererDsGrille();
-    }
 
     public boolean dejaRecuCoup(Coord tir){
 
@@ -72,7 +69,7 @@ public class Flotte {
         boolean coordsSontValide  = false;
         Navire essaieNavire;
 
-        while (!coordsSontValide){
+        do{
 
             coordDebut = new Coord(rand.nextInt(10)+1,rand.nextInt(10) + 1);
             direction = rand.nextInt(4) + 1;
@@ -80,18 +77,22 @@ public class Flotte {
 
             switch (direction){
                 case NORD : coordFin = new Coord(coordDebut.ligne + longueurAjuste,coordDebut.colonne);
+                    break;
                 case SUD : coordFin = new Coord(coordDebut.ligne - longueurAjuste,coordDebut.colonne);
+                    break;
                 case EST: coordFin = new Coord(coordDebut.ligne,coordDebut.colonne + longueurAjuste);
+                    break;
                 case OUEST: coordFin = new Coord(coordDebut.ligne,coordDebut.colonne - longueurAjuste);
+                    break;
             }
 
             try{
                 essaieNavire = new Navire(nom,coordDebut,coordFin,couleur);
                 coordsSontValide = true;
-            }catch (Exception e){
+            }catch (IllegalArgumentException e){
                 coordsSontValide = false;
             }
-        }
+        }while(!coordsSontValide);
         essaieNavire = new Navire(nom,coordDebut,coordFin,couleur);
         return essaieNavire;
     }
@@ -137,7 +138,10 @@ public class Flotte {
     /*Une méthode static obtenirFlotteAleatoire() crée une flotte, génère la position des
     navires aléatoire (appel du SP précédent) et la retourne.*/
     public static Flotte obtenirFlotteAleatoire(){
-        return new Flotte(0);
+
+        Flotte flotte = new Flotte();
+        flotte.genererPosNavireAleaInsererDsGrille();
+        return flotte;
     }
 
 
