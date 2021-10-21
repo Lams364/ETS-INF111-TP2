@@ -28,7 +28,7 @@ public class Constantes {
 
 	// N�cessaire � l'affichage des options du menu.
 	public static final String[] OPTIONS = 
-		{"Premi�re fois", "Debutant", "Intermediaire", "Avance", "Expert"};
+		{"Premiere fois", "Debutant", "Intermediaire", "Avance", "Expert"};
 
 	// Position dans le tableau des options du menu.
 	public static final int PREMIERE_FOIS = 0;
@@ -46,19 +46,5 @@ public class Constantes {
 	public static final String DESTROYER = "destroyer";
 	public static final String CROISEUR = "croiseur";
 	public static final String CUIRASSE = "cuirasse";
-
-	// Les longueurs des bateaux.
-	public static final int SOUS_MARIN_LONGUEUR = 3;
-	public static final int PORTE_AVION_LONGUEUR = 5;
-	public static final int DESTROYER_LONGUEUR = 2;
-	public static final int CROISEUR_LONGUEUR = 4;
-	public static final int CUIRASSE_LONGUEUR = 3;
-
-
-
-
-
-
-
 
 }

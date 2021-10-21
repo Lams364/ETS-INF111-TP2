@@ -37,21 +37,16 @@ public class UtilitaireGrilleGui {
 	 * @param gui L'interface graphique � remplir
 	 * @param pourc Le pourcentage de la grille � mettre dans le gui
 	 */
-	public static void montrerFlotte(Flotte flotte, GrilleGui gui) {
+	public static void montrerFlotte(Flotte flotte, GrilleGui gui){
 
 		/*
-		 * Stratégie : Pour chaque Navire de la grille de jeu, on colore le fond
-		 * de la position de debut à la position de fin avec la couleur
+		 * Strat�gie : Pour chaque Navire de la grille de jeu, on colore le fond
+		 * de la position de debut � la position de fin avec la couleur 
 		 * du navire.
 		 */
 
 
-		for (Navire bateau : flotte.collectionDeNavires) {
-			for (Coord point : bateau.listeCoordonnes) {
-				gui.setCouleurFond(point, bateau.couleur);
-			}
-		}
-
+		// � vous de jouer
 	}
 
 	/**
