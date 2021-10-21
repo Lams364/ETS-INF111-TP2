@@ -13,8 +13,6 @@ public class Navire {
     int longueur;
     Color couleur;
     ArrayList<Coord> coupsTouches = new ArrayList<Coord>();
-    Coord coordDebut;
-    Coord coordFin;
     String orientation;
     ArrayList<Coord> listeCoordonnes = new ArrayList<Coord>();
 
@@ -42,8 +40,6 @@ public class Navire {
 
         this.nom = nom;
         this.couleur = couleur;
-        coordDebut = debut;
-        coordFin = fin;
 
         if (nbLigne > nbColonne){
             orientation = NS;
@@ -52,8 +48,17 @@ public class Navire {
             orientation = EW;
             longueur = nbColonne;
         }
-        listeCoordonnes  = getCoordonnes();
 
+        for (int i=0;i<longueur;i++){
+
+            if(orientation.equals(NS)){
+                Coord coordTemporaire = new Coord(debut.ligne + i,debut.colonne);
+                listeCoordonnes.add(coordTemporaire);
+            }else{
+                Coord coordTemporaire = new Coord(debut.ligne,debut.colonne + i);
+                listeCoordonnes.add(coordTemporaire);
+            }
+        }
     }
 
     public boolean estCoule(){
@@ -101,40 +106,6 @@ public class Navire {
         return false;
     }
 
-    /**
-     * ce sous programme a pour but de trouver tous les coordonnes du navire.
-     * @return un arraylist contenant tous les coordonnes du navire.
-     *
-     * fonction que j'ai decider de faire moi-mêmes puisque je sais que je pourrai m'en servir
-     * dans les autres sous programmes. J.L.
-     */
-    private ArrayList<Coord> getCoordonnes(){
-
-        Coord coordTemporaire = new Coord();
-        ArrayList<Coord> listeCoordNavire = new ArrayList<Coord>();
-
-        // si le navire est verticale
-        if (orientation.equals(NS)){
-
-
-            for (int i = 0; i < longueur; i++){
-
-                coordTemporaire.ligne = coordDebut.ligne + i;
-                coordTemporaire.colonne = coordDebut.colonne;
-
-                listeCoordNavire.add(coordTemporaire);
-            }
-        } else {
-            for (int i = 0; i < longueur; i++){
-
-                coordTemporaire.ligne = coordDebut.ligne;
-                coordTemporaire.colonne = coordDebut.colonne + i;
-
-                listeCoordNavire.add(coordTemporaire);
-            }
-        }
-        return listeCoordNavire;
-    }
 
     private boolean positionTouche(Coord tir){
 
@@ -142,9 +113,13 @@ public class Navire {
     }
 
     public boolean estDansLaGrille(){
-        return (coordDebut.colonne <= Constantes.TAILLE && coordDebut.ligne <= Constantes.TAILLE
-                && coordFin.colonne <= Constantes.TAILLE && coordFin.ligne <= Constantes.TAILLE);
+
+        for (Coord point : listeCoordonnes){
+            if (point.colonne > Constantes.TAILLE || point.ligne > Constantes.TAILLE) return false;
+        }
+        return true;
     }
+
 
     public String toString(){
 
@@ -153,12 +128,10 @@ public class Navire {
         message += "Nom : " + nom;
         message += "\nLongueur : " + longueur;
         message += "\nOrientation : " + orientation;
-        message += "\nCoordonneDebut : " + coordDebut;
-        message += "\nCoordonneFin : " + coordFin;
-        message += "\nListe de coups touches : " + coupsTouches.toString()+"\n\n";
-
-
-
+        message += "\nCoordonneDebut : " + listeCoordonnes.get(0);
+        message += "\nCoordonneFin : " + listeCoordonnes.get(longueur - 1);
+        message += "\nListe de coups touches : " + coupsTouches.toString();
+        message += "\nCouleur : " + couleur+"\n\n";
 
         return message;
     }

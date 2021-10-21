@@ -19,8 +19,8 @@ public class Flotte {
 
     public Flotte(){
         ArrayList<Navire> collectionDeNavires = new ArrayList<>();
+        collectionDeNavires.ensureCapacity(5);
     }
-
 
     public boolean dejaRecuCoup(Coord tir){
 
@@ -39,7 +39,7 @@ public class Flotte {
     }
 
     public Navire[] getTabNavires(){
-        return collectionDeNavires.toArray(new Navire[0]); // à confirmer
+        return collectionDeNavires.toArray(new Navire[0]);
     }
 
     public boolean leTirTouche(Coord tir){
@@ -63,14 +63,13 @@ public class Flotte {
 
     private Navire obtenirNavireAleatoire(String nom, int longueur, Color couleur){
 
-        Coord coordDebut = new Coord();
-        Coord coordFin = new Coord();
+        Coord coordDebut;
+        Coord coordFin;
         int direction;
         boolean coordsSontValide  = false;
         Navire essaieNavire;
 
         do{
-
             coordDebut = new Coord(rand.nextInt(10)+1,rand.nextInt(10) + 1);
             direction = rand.nextInt(4) + 1;
             int longueurAjuste = longueur - 1;
@@ -84,8 +83,8 @@ public class Flotte {
                     break;
                 case OUEST: coordFin = new Coord(coordDebut.ligne,coordDebut.colonne - longueurAjuste);
                     break;
+                default : coordFin = new Coord();
             }
-
             try{
                 essaieNavire = new Navire(nom,coordDebut,coordFin,couleur);
                 coordsSontValide = true;
