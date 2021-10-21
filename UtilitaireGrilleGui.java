@@ -31,17 +31,16 @@ public class UtilitaireGrilleGui {
 	/**
 	 * Montre les navire de la flotte dans le gui.
 	 * 
-	 * Change la couleur de fond des cases � la position des navires.
+	 * Change la couleur de fond des cases a la position des navires.
 	 * 
 	 * @param grilleJeu  La grille contenant les navires
-	 * @param gui L'interface graphique � remplir
-	 * @param pourc Le pourcentage de la grille � mettre dans le gui
+	 * @param gui L'interface graphique a remplir
 	 */
 	public static void montrerFlotte(Flotte flotte, GrilleGui gui) {
 
 		/*
-		 * Stratégie : Pour chaque Navire de la grille de jeu, on colore le fond
-		 * de la position de debut à la position de fin avec la couleur
+		 * Stratee : Pour chaque Navire de la grille de jeu, on colore le fond
+		 * de la position de debut a la position de fin avec la couleur
 		 * du navire.
 		 */
 

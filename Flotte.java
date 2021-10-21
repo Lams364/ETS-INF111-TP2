@@ -1,142 +1,242 @@
-import com.sun.xml.internal.bind.v2.TODO;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Classe qui construit une flotte de navires
+ * Permet de generer des navires aleatoires et de les ajouter dans la liste de navires
+ * 
+ * @author Marc-Olivier Champagne
+ * @author Jacob Lamarche
+ * @author Daniel Ouambo
+ *
+ * @version : 21 octobre 2021
+ */
 public class Flotte {
 
+	// Initialisation du Random
+	public final Random rand = new Random();
+	
+	// Constantes utilises
     public final int POSITION_INVALIDE = -1;
     public final int NAVIRE_DEJA_SUR_PLACE = -2;
     public final int AUCUNE_ERREUR = 0;
-    public final Random rand = new Random();
     public final int NORD = 1;
     public final int SUD = 2;
     public final int EST = 3;
     public final int OUEST = 4;
 
+    // Liste qui va contenir des navires
     public ArrayList<Navire> collectionDeNavires = new ArrayList<>();
 
+    
+    /**
+     * Constructeur qui va initaliser une flotte de 5 navires
+     */
     public Flotte(){
         ArrayList<Navire> collectionDeNavires = new ArrayList<>();
         collectionDeNavires.ensureCapacity(5);
     }
 
+    /**
+     * Verifie si un navire a deja recu le tir
+     * @param tir : Coord du tir
+     * @return boolean du coup deja recu
+     */
     public boolean dejaRecuCoup(Coord tir){
-
+    	
+    	// Pour tous les navires de la flotte
         for (Navire navireCourant : collectionDeNavires) {
+        	
+        	// On appel la verification du navire selon le tir
             if (navireCourant.dejaRecuTir(tir)) return true;
         }
         return false;
     }
 
+    /**
+     * Verifie si tous les navires de la flotte sont coules
+     */
     public boolean jeuTermine(){
 
+    	// Pour tous les navires de la collection
         for (Navire navireCourant : collectionDeNavires) {
+        	
+        	// Si le navire n'est pas coule, la fonction retourne false
             if (!navireCourant.estCoule()) return false;
         }
         return true;
     }
 
+    /**
+     * Retourne un tableau de navire a partir de la flotte
+     * @return Navire[]
+     */
     public Navire[] getTabNavires(){
         return collectionDeNavires.toArray(new Navire[0]);
     }
 
+    /**
+     * Retourne si le tir a touche un des navires de la flotte
+     * @param tir : Coord du tir
+     * @return
+     */
     public boolean leTirTouche(Coord tir){
+    	
+    	// Pour tous les navires de la flotte
         for (Navire navireCourant : collectionDeNavires) {
+        	
+        	// Si le navire est touche, retourne true
             if (navireCourant.tirAtouche(tir)) return true;
         }
         return false;
     }
 
+    /**
+     * Ajoute un navire seulement si les coordonnees du navire sont valides
+     * @param navire : navire a ajoute
+     * @return int de l'erreur
+     */
     private int ajouterNavire(Navire navire){
 
+    	// Pour tous les navires de la flotte
         for(Navire navireCourant : collectionDeNavires){
+        	
+        	// S'il y a du chevauchement, retourne le code d'erreur
             if(navire.chevauche(navireCourant)) return NAVIRE_DEJA_SUR_PLACE;
         }
+        
+        // Si le navire n'est pas dans la grille, retourne le code d'erreur
         if (!navire.estDansLaGrille()) return POSITION_INVALIDE;
 
+        // Ajout du navire à la flotte et retour d'aucune erreur
         collectionDeNavires.add(navire);
         return AUCUNE_ERREUR;
     }
-
+    /**
+     * Retourne un navire dont les coordonnees ont ete generees aleatoirement, validees et ordonnees
+     * @param nom : String contenant le nom du navire
+     * @param longueur : int longueur desire du navire
+     * @param couleur : Color couleur desire du navire
+     * @return Un navire cree aleatoirement
+     */
     private Navire obtenirNavireAleatoire(String nom, int longueur, Color couleur){
 
+        boolean coordsSontValide  = false;
+        
+    	// Variables initiales pour transfert au navire et instanciation d'un navire
         Coord coordDebut;
         Coord coordFin;
         int direction;
-        boolean coordsSontValide  = false;
         Navire essaieNavire;
-
+        
+        // On entre dans la boucle une premiere fois
         do{
-            coordDebut = new Coord(rand.nextInt(10)+1,rand.nextInt(10) + 1);
+        	// On cree une Coord initiale aleatoire qui ira dans une direction aleatoire aussi
+        	// La longueur est ajustee pour ne pas inclure la Coord de debut
+            coordDebut = new Coord(rand.nextInt(10),rand.nextInt(10));
             direction = rand.nextInt(4) + 1;
             int longueurAjuste = longueur - 1;
-
+            
+            // Dependemment de la direction, on attribue une ligne ou colonne adittionee a la
+            // longueur ajustee et la ligne ou coulonne qui ne change pas
             switch (direction){
-                case NORD : coordFin = new Coord(coordDebut.ligne + longueurAjuste,coordDebut.colonne);
+                case NORD : coordFin =
+                		new Coord(coordDebut.ligne + longueurAjuste,coordDebut.colonne);
                     break;
-                case SUD : coordFin = new Coord(coordDebut.ligne - longueurAjuste,coordDebut.colonne);
+                    
+                case SUD : coordFin = 
+                		new Coord(coordDebut.ligne - longueurAjuste,coordDebut.colonne);
                     break;
-                case EST: coordFin = new Coord(coordDebut.ligne,coordDebut.colonne + longueurAjuste);
+                    
+                case EST: coordFin = 
+                		new Coord(coordDebut.ligne,coordDebut.colonne + longueurAjuste);
                     break;
-                case OUEST: coordFin = new Coord(coordDebut.ligne,coordDebut.colonne - longueurAjuste);
+                    
+                case OUEST: coordFin =
+                		new Coord(coordDebut.ligne,coordDebut.colonne - longueurAjuste);
                     break;
+                    
+                // Valeur par défaut
                 default : coordFin = new Coord();
             }
+            
+            // On cree un navire avec les informations creees
             try{
                 essaieNavire = new Navire(nom,coordDebut,coordFin,couleur);
                 coordsSontValide = true;
+                
+            // Si la classe Navire ne fonctionne pas, on attribue false a la variable
             }catch (IllegalArgumentException e){
                 coordsSontValide = false;
             }
+            
+        // Si la variable est fausse, donc si la classe Navire a rencontree un probleme, alors 
+        // on repete la boucle
         }while(!coordsSontValide);
+        
+        // On cree un navire avec les informations valides et on le retourne
         essaieNavire = new Navire(nom,coordDebut,coordFin,couleur);
         return essaieNavire;
     }
-    /*Une mÃ©thode void genererPosNavireAleaInsererDsGrille() qui ajoute un Ã  un
-    les navires dans la flotte. Il y a autant de boucles quâ€™il y a de navires. Une
-    boucle se termine lorsque ajouterNavire retourne AUCUNE_ERREUR.*/
+
+    /**
+     *  Ajoute un à un les navires dans la flotte. Il y a autant de boucles qu’il y a de navires. 
+	 *	Une boucle se termine lorsque ajouterNavire retourne AUCUNE_ERREUR..
+     */
     private void genererPosNavireAleaInsererDsGrille(){
-
+    	
+    	// Creation d'une variable pour entreposer l'indicateur
         int indicateurErreur;
-
+        
+        /*
+         * Les cinq blocs suivants servent a produire un navire valide
+         * Ils sont executes une premiere fois pour avoir un navire initiale
+         * Si l'indicateur revient avec une erreur, la creation est repetee
+         * Le navire cree comporte les informations relatives a chacun des navires et une couleur
+         * que nous avons selectionnee aleatoirement
+         */
+        
+        // Boucle du destroyer
         do {
-            indicateurErreur = 1;
             indicateurErreur = ajouterNavire(obtenirNavireAleatoire(Constantes.DESTROYER,
                     Constantes.DESTROYER_LONGUEUR,Color.LIGHT_GRAY));
         }while(indicateurErreur != AUCUNE_ERREUR);
 
+        // Boucle du cuirasse
         do {
-            indicateurErreur = 1;
             indicateurErreur = ajouterNavire(obtenirNavireAleatoire(Constantes.CUIRASSE,
-                    Constantes.CUIRASSE_LONGUEUR,Color.LIGHT_GRAY));
+                    Constantes.CUIRASSE_LONGUEUR,Color.DARK_GRAY));
         }while(indicateurErreur != AUCUNE_ERREUR);
 
+        // Boucle du sous-marin
         do {
-            indicateurErreur = 1;
             indicateurErreur = ajouterNavire(obtenirNavireAleatoire(Constantes.SOUS_MARIN,
-                    Constantes.SOUS_MARIN_LONGUEUR,Color.LIGHT_GRAY));
+                    Constantes.SOUS_MARIN_LONGUEUR,Color.ORANGE));
         }while(indicateurErreur != AUCUNE_ERREUR);
 
+        // Boucle du croiseur
         do {
-            indicateurErreur = 1;
             indicateurErreur = ajouterNavire(obtenirNavireAleatoire(Constantes.CROISEUR,
-                    Constantes.CROISEUR_LONGUEUR,Color.LIGHT_GRAY));
+                    Constantes.CROISEUR_LONGUEUR,Color.PINK));
         }while(indicateurErreur != AUCUNE_ERREUR);
 
+        // Boucle du porte avion
         do {
-            indicateurErreur = 1;
             indicateurErreur = ajouterNavire(obtenirNavireAleatoire(Constantes.PORTE_AVION,
-                    Constantes.PORTE_AVION_LONGUEUR,Color.LIGHT_GRAY));
+                    Constantes.PORTE_AVION_LONGUEUR,Color.MAGENTA));
         }while(indicateurErreur != AUCUNE_ERREUR);
 
     }
 
-    /*Une mÃ©thode static obtenirFlotteAleatoire() crÃ©e une flotte, gÃ©nÃ¨re la position des
-    navires alÃ©atoire (appel du SP prÃ©cÃ©dent) et la retourne.*/
+    /**
+     * Crée une flotte, génère la position des navires aléatoire (appel du SP précédent) et
+     * la retourne.
+     * @return Flotte cree
+     */
     public static Flotte obtenirFlotteAleatoire(){
 
+    	// Creation de la flotte, appel du sous programme pour donner les positions et retour
         Flotte flotte = new Flotte();
         flotte.genererPosNavireAleaInsererDsGrille();
         return flotte;
