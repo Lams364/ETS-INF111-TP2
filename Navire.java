@@ -97,12 +97,11 @@ public class Navire {
 
     public boolean chevauche(Navire navireAutre){
 
-        //pour tous les points dans la liste coordsNavireAutre
-        for (Coord point : navireAutre.listeCoordonnes){
-            //si le point est trouvé dans la liste des points, c'est qu'il se chevauche.
-            //on retourne donc true.
-            if (this.listeCoordonnes.contains(point)) return true;
-        }
+        for (Coord pointNavireAutre : navireAutre.listeCoordonnes){
+            for (Coord pointThis : this.listeCoordonnes){
+                if(pointNavireAutre.equals(pointThis)) return true;
+            }
+         }
         return false;
     }
 

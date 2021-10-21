@@ -12,7 +12,7 @@ public class Test {
             System.out.println(navireCourant.toString());
         }
 
-        GrilleGui grille = new GrilleGui(Constantes.TAILLE,Constantes.TAILLE+1,
+        GrilleGui grille = new GrilleGui(Constantes.TAILLE+1,Constantes.TAILLE+1,
                 Constantes.COULEUR_TEXTE
                 ,Constantes.COULEUR_FOND, Constantes.OPTIONS, GrilleGui.DISPOSE);
 

@@ -54,9 +54,8 @@ public class Flotte {
         for(Navire navireCourant : collectionDeNavires){
             if(navire.chevauche(navireCourant)) return NAVIRE_DEJA_SUR_PLACE;
         }
-        if (!navire.estDansLaGrille()){
-            return POSITION_INVALIDE;
-        }
+        if (!navire.estDansLaGrille()) return POSITION_INVALIDE;
+
         collectionDeNavires.add(navire);
         return AUCUNE_ERREUR;
     }
