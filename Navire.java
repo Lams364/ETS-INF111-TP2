@@ -21,47 +21,47 @@ public class Navire {
     String nom;
     int longueur;
     Color couleur;
-    ArrayList<Coord> coupsTouches = new ArrayList<Coord>();
+    ArrayList<Coord> listeCoupsTouches = new ArrayList<Coord>();
     String orientation;
     ArrayList<Coord> listeCoordonnes = new ArrayList<Coord>();
 
     
     /**
-     * Navire: constructeur par paramètre d'un navire. Remplis aussi les cases concernées.
+     * Navire: constructeur par parametre d'un navire. Remplis aussi les cases concernï¿½es.
      * @param nom: nom du type de navire
-     * @param debut: Coord qui représente la premiere valeur du navire en partant du coin 
+     * @param coordDebut: Coord qui represente la premiere valeur du navire en partant du coin
      * haut-gauche
-     * @param fin: Coord qui représente l'autre extremite du navire
+     * @param coordFin: Coord qui represente l'autre extremite du navire
      * @param couleur: couleur utilise pour represente le navire
      */
-    public Navire (String nom, Coord debut, Coord fin, Color couleur){
+    public Navire (String nom, Coord coordDebut, Coord coordFin, Color couleur){
 
         // calcul des nombres de colonnes et de lignes du navire
-        int nbColonne = fin.colonne - debut.colonne +1;
-        int nbLigne = fin.ligne - debut.ligne +1;
+        int nbColonne = coordFin.colonne - coordDebut.colonne +1;
+        int nbLigne = coordFin.ligne - coordDebut.ligne +1;
 
-        // Les messages d’exception possibles sont :
+        // Les messages d'exception possibles sont :
         
-        // Le nombre de lignes est plus grand que 1 et les colonnes sont différentes
+        // Le nombre de lignes est plus grand que 1 et les colonnes sont differentes
         // entre le debut et la fin.
-        if (nbLigne > 1 && (debut.colonne != fin.colonne)){
+        if (nbLigne > 1 && (coordDebut.colonne != coordFin.colonne)){
             throw new IllegalArgumentException("Coordonnees NORD_SUD invalide");
              
-        // Le nombre de colonnes est plus grand que 1 et les lignes sont différentes
-        // entre le début et la fin.
-        } else if (nbColonne > 1 && (debut.ligne != fin.ligne)){
+        // Le nombre de colonnes est plus grand que 1 et les lignes sont differentes
+        // entre le debut et la coordFin.
+        } else if (nbColonne > 1 && (coordDebut.ligne != coordFin.ligne)){
             throw new IllegalArgumentException("Coordonnees EST_OUEST invalide");
 
-        // La ligne n’est pas dans l’intervalle de la grille ou la ligne de début est plus
-        // grande que la ligne de fin.
-        } else if ((debut.ligne > fin.ligne) || (debut.ligne >= Constantes.TAILLE
-                || fin.ligne >= Constantes.TAILLE)){
+        // La ligne nï¿½est pas dans l'intervalle de la grille ou la ligne de dï¿½but est plus
+        // grande que la ligne de coordFin.
+        } else if ((coordDebut.ligne > coordFin.ligne) || (coordDebut.ligne >= Constantes.TAILLE
+                || coordFin.ligne >= Constantes.TAILLE)){
             throw new IllegalArgumentException("Ligne invalide");
         
-        // La colonne n’est pas dans l’intervalle de la grille ou la colonne de début est
-        // plus grande que la colonne de fin.
-        } else if ((debut.colonne > fin.colonne) || (debut.colonne >= Constantes.TAILLE
-                || fin.colonne >= Constantes.TAILLE)){
+        // La colonne nï¿½est pas dans lï¿½intervalle de la grille ou la colonne de dï¿½but est
+        // plus grande que la colonne de coordFin.
+        } else if ((coordDebut.colonne > coordFin.colonne) || (coordDebut.colonne >= Constantes.TAILLE
+                || coordFin.colonne >= Constantes.TAILLE)){
             throw new IllegalArgumentException("Colonne invalide");
         }
 
@@ -83,10 +83,10 @@ public class Navire {
         	
         	// Dependamment de son orientation, on remplis son ArrayList avec les points couverts
             if(orientation.equals(NS)){
-                Coord coordTemporaire = new Coord(debut.ligne + i,debut.colonne);
+                Coord coordTemporaire = new Coord(coordDebut.ligne + i,coordDebut.colonne);
                 listeCoordonnes.add(coordTemporaire);
             }else{
-                Coord coordTemporaire = new Coord(debut.ligne,debut.colonne + i);
+                Coord coordTemporaire = new Coord(coordDebut.ligne,coordDebut.colonne + i);
                 listeCoordonnes.add(coordTemporaire);
             }
         }
@@ -100,32 +100,47 @@ public class Navire {
     public boolean estCoule(){
 
         // creation d'une nouvelle liste temporaire afin d'enregistrer les differentes 
-    	// cases de "touche"
+    	// cases de listeCoupsTouches.
         ArrayList<Coord> listeTemporaireCoupsTouche = new ArrayList<Coord>();
-        
+        listeTemporaireCoupsTouche.add(listeCoupsTouches.get(0));
+
         // Pour tous les coups touches du navire, on ajoute ceux uniques a la liste temporaire
-        for (Coord i : coupsTouches) {
-            if (!listeTemporaireCoupsTouche.contains(i)) {
-                listeTemporaireCoupsTouche.add(i);
+        for (Coord pointCoupsTouches : listeCoupsTouches) {
+
+            // Pour tous les points dans la nouvelle liste de points temporaire
+            for(Coord pointListeTemporaire : listeTemporaireCoupsTouche){
+
+                // Si le point de coupsTouche n'est pas egal a un point dans la liste temporaire
+                if(!pointCoupsTouches.equals(pointListeTemporaire)){
+                    listeTemporaireCoupsTouche.add(pointCoupsTouches);
+                }
             }
         }
-        
+
         // On evalue la quantite de coups dans la liste temporaire compare a la longueur du navire
         return listeTemporaireCoupsTouche.size() == longueur; // >= ou == ???
     }
 
     /**
-     * dejaRecuTir: retourne vrai si la coordonnée recue a deja touche au navire.
+     * dejaRecuTir: retourne vrai si la coordonnee recue a deja touche au navire.
      * @param tir: Coord du tir
      * @return: boolean de l'existence du tir sur une Coord du navire
      */
     public boolean dejaRecuTir(Coord tir){
-        return coupsTouches.contains(tir);
+
+        // pour tous les points dans la liste de coups touches de this
+        for(Coord pointCourant : listeCoupsTouches){
+
+            // si le pointCourant est egal au tir, on retourne true
+            if (pointCourant.equals(tir)) return true;
+        }
+        // si on est sorti de la boucle, c'est qu'aucun point est egal au tir
+        return false;
     }
 
     /**
      * tirAtouche: retourne vrai si la coordonnee recue touche au navire actuel (this) et faux 
-     * autrement (implique une boucle de recherche). Retient aussi la coordonnee si elle l’a touche
+     * autrement (implique une boucle de recherche). Retient aussi la coordonnee si elle lï¿½a touche
      * @param tir: Coord du tir
      * @return: boolean de la presence du tir sur une Coord du navire 
      */
@@ -133,17 +148,17 @@ public class Navire {
 
         boolean aToucheNavire = false;
 
-        //Si le navire n’est pas coule
+        //Si le navire n'est pas coule
         if (!estCoule()){
         	
-        	// Si le navire actuel n’a pas deja recu ce tir
+        	// Si le navire actuel n'a pas deja recu ce tir
             if(!dejaRecuTir(tir)){
             		
             	// Si le tir touche au navire actuel 
             	if(positionTouche(tir)) {
             		
-            		// On retient la coordonnée dans la collection et on met le boolean a vrai
-            		coupsTouches.add(tir);
+            		// On retient la coordonnee dans la collection et on met le boolean a vrai
+            		listeCoupsTouches.add(tir);
                     aToucheNavire = true;
                 }
             }
@@ -159,14 +174,15 @@ public class Navire {
      */
     public boolean chevauche(Navire navireAutre){
     	
-    	// Pour tous les Coord des deux navires
+    	// Pour tous les points de navireAutre et de this
         for (Coord pointNavireAutre : navireAutre.listeCoordonnes){
             for (Coord pointThis : this.listeCoordonnes){
             	
-            	// On retourne vrai uniquement si des points sont identiques
+            	// Si les deux points sont egaux, on retourne true
                 if(pointNavireAutre.equals(pointThis)) return true;
             }
          }
+        // Si on est sortie de la boucle, cela veut dire qu'aucun point ne se chevauchait
         return false;
     }
 
@@ -176,7 +192,16 @@ public class Navire {
      * @return boolean 
      */
     private boolean positionTouche(Coord tir){
-        return listeCoordonnes.contains(tir);
+
+        // Pour tous les points couvert par le navire
+        for (Coord point : listeCoordonnes){
+
+            // si le tir est Ã©gal au point du navire, on retourne true
+            if(point.equals(tir)) return true;
+        }
+        // si on sort de la boucle, cela veut dire qu'aucun point etait egal au tir.
+        // On retourne donc false
+        return false;
     }
 
     /**
@@ -188,7 +213,7 @@ public class Navire {
     	// Pour tous les points couverts par le navire
         for (Coord point : listeCoordonnes){
         	
-        	// Retourne faux si les points depasses les bornes
+        	// Retourne faux si le point depasse les bornes
             if (point.colonne > Constantes.TAILLE || point.ligne > Constantes.TAILLE) return false;
         }
         return true;
@@ -207,7 +232,7 @@ public class Navire {
         message += "\nOrientation : " + orientation;
         message += "\nCoordonneDebut : " + listeCoordonnes.get(0);
         message += "\nCoordonneFin : " + listeCoordonnes.get(longueur - 1);
-        message += "\nListe de coups touches : " + coupsTouches.toString();
+        message += "\nListe de coups touches : " + listeCoupsTouches.toString();
         message += "\nCouleur : " + couleur+"\n\n";
 
         return message;

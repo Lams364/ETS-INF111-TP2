@@ -26,7 +26,7 @@ public class Flotte {
     public final int EST = 3;
     public final int OUEST = 4;
 
-    // Liste qui va contenir des navires
+    // Liste qui va contenir les navires de la flotte
     public ArrayList<Navire> collectionDeNavires = new ArrayList<>();
 
     
@@ -35,6 +35,8 @@ public class Flotte {
      */
     public Flotte(){
         ArrayList<Navire> collectionDeNavires = new ArrayList<>();
+
+        // Ã©tablir la taille minimal du arraylist a 5 afin qu'il n'aille pas a s'agrandir
         collectionDeNavires.ensureCapacity(5);
     }
 
@@ -109,7 +111,7 @@ public class Flotte {
         // Si le navire n'est pas dans la grille, retourne le code d'erreur
         if (!navire.estDansLaGrille()) return POSITION_INVALIDE;
 
-        // Ajout du navire à la flotte et retour d'aucune erreur
+        // Ajout du navire ï¿½ la flotte et retour d'aucune erreur
         collectionDeNavires.add(navire);
         return AUCUNE_ERREUR;
     }
@@ -157,7 +159,7 @@ public class Flotte {
                 		new Coord(coordDebut.ligne,coordDebut.colonne - longueurAjuste);
                     break;
                     
-                // Valeur par défaut
+                // Valeur par dï¿½faut
                 default : coordFin = new Coord();
             }
             
@@ -181,7 +183,7 @@ public class Flotte {
     }
 
     /**
-     *  Ajoute un à un les navires dans la flotte. Il y a autant de boucles qu’il y a de navires. 
+     *  Ajoute un ï¿½ un les navires dans la flotte. Il y a autant de boucles quï¿½il y a de navires. 
 	 *	Une boucle se termine lorsque ajouterNavire retourne AUCUNE_ERREUR..
      */
     private void genererPosNavireAleaInsererDsGrille(){
@@ -230,7 +232,7 @@ public class Flotte {
     }
 
     /**
-     * Crée une flotte, génère la position des navires aléatoire (appel du SP précédent) et
+     * Crï¿½e une flotte, gï¿½nï¿½re la position des navires alï¿½atoire (appel du SP prï¿½cï¿½dent) et
      * la retourne.
      * @return Flotte cree
      */

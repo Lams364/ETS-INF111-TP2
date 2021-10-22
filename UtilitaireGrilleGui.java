@@ -29,28 +29,25 @@ public class UtilitaireGrilleGui {
 	}
 
 	/**
-	 * Montre les navire de la flotte dans le gui.
+	 * Montre les navires de la flotte dans le gui.
 	 * 
 	 * Change la couleur de fond des cases a la position des navires.
 	 * 
-	 * @param grilleJeu  La grille contenant les navires
 	 * @param gui L'interface graphique a remplir
+	 * @param flotte La flotte a montrer
 	 */
 	public static void montrerFlotte(Flotte flotte, GrilleGui gui) {
 
-		/*
-		 * Stratee : Pour chaque Navire de la grille de jeu, on colore le fond
-		 * de la position de debut a la position de fin avec la couleur
-		 * du navire.
-		 */
+		// pour tous les navires de la flotte
+		for (Navire navireCourant : flotte.collectionDeNavires) {
 
+			// pour tous les points de navireCourant
+			for (Coord point : navireCourant.listeCoordonnes) {
 
-		for (Navire bateau : flotte.collectionDeNavires) {
-			for (Coord point : bateau.listeCoordonnes) {
-				gui.setCouleurFond(point, bateau.couleur);
+				// on établi la couleur de la grille au case correspondate du navireCourant
+				gui.setCouleurFond(point, navireCourant.couleur);
 			}
 		}
-
 	}
 
 	/**
@@ -58,7 +55,6 @@ public class UtilitaireGrilleGui {
 	 * 
 	 * @param gui
 	 * @param coord
-	 * @param valeur
 	 */
 	public static void afficherTir(GrilleGui gui, Coord coord){
 		
