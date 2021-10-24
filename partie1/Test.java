@@ -1,8 +1,10 @@
+package partie1;
+
 /**
  * Programmes de test des classes:
- * Flotte
- * Navire
- * UtilitaireGrilleGui
+ * partie1.Flotte
+ * partie1.Navire
+ * partie1.UtilitaireGrilleGui
  * 
  * @author Marc-Olivier Champagne
  * @author Jacob Lamarche
@@ -41,9 +43,9 @@ public class Test {
         
         // Si probleme d'affichage, essayer code en commentaire ci-bas
         /* 
-        GrilleGui grille = new GrilleGui(Constantes.TAILLE,Constantes.TAILLE,
-                Constantes.COULEUR_TEXTE
-                ,Constantes.COULEUR_FOND, null, GrilleGui.DISPOSE);
+        partie1.GrilleGui grille = new partie1.GrilleGui(partie1.Constantes.TAILLE,partie1.Constantes.TAILLE,
+                partie1.Constantes.COULEUR_TEXTE
+                ,partie1.Constantes.COULEUR_FOND, null, partie1.GrilleGui.DISPOSE);
         */
         
         

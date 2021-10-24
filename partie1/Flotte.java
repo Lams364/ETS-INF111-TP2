@@ -1,6 +1,9 @@
+package partie1;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
+import partie2.*;
 
 /**
  * Classe qui construit une flotte de navires
@@ -17,7 +20,7 @@ public class Flotte {
 	// Initialisation du Random
 	public final Random rand = new Random();
 	
-	// Constantes utilises
+	// partie1.Constantes utilises
     public final int POSITION_INVALIDE = -1;
     public final int NAVIRE_DEJA_SUR_PLACE = -2;
     public final int AUCUNE_ERREUR = 0;
@@ -42,7 +45,7 @@ public class Flotte {
 
     /**
      * Verifie si un navire a deja recu le tir
-     * @param tir : Coord du tir
+     * @param tir : partie1.Coord du tir
      * @return boolean du coup deja recu
      */
     public boolean dejaRecuCoup(Coord tir){
@@ -72,7 +75,7 @@ public class Flotte {
 
     /**
      * Retourne un tableau de navire a partir de la flotte
-     * @return Navire[]
+     * @return partie1.Navire[]
      */
     public Navire[] getTabNavires(){
         return collectionDeNavires.toArray(new Navire[0]);
@@ -80,7 +83,7 @@ public class Flotte {
 
     /**
      * Retourne si le tir a touche un des navires de la flotte
-     * @param tir : Coord du tir
+     * @param tir : partie1.Coord du tir
      * @return
      */
     public boolean leTirTouche(Coord tir){
@@ -134,8 +137,8 @@ public class Flotte {
         
         // On entre dans la boucle une premiere fois
         do{
-        	// On cree une Coord initiale aleatoire qui ira dans une direction aleatoire aussi
-        	// La longueur est ajustee pour ne pas inclure la Coord de debut
+        	// On cree une partie1.Coord initiale aleatoire qui ira dans une direction aleatoire aussi
+        	// La longueur est ajustee pour ne pas inclure la partie1.Coord de debut
             coordDebut = new Coord(rand.nextInt(10),rand.nextInt(10));
             direction = rand.nextInt(4) + 1;
             int longueurAjuste = longueur - 1;
@@ -168,12 +171,12 @@ public class Flotte {
                 essaieNavire = new Navire(nom,coordDebut,coordFin,couleur);
                 coordsSontValide = true;
                 
-            // Si la classe Navire ne fonctionne pas, on attribue false a la variable
+            // Si la classe partie1.Navire ne fonctionne pas, on attribue false a la variable
             }catch (IllegalArgumentException e){
                 coordsSontValide = false;
             }
             
-        // Si la variable est fausse, donc si la classe Navire a rencontree un probleme, alors 
+        // Si la variable est fausse, donc si la classe partie1.Navire a rencontree un probleme, alors
         // on repete la boucle
         }while(!coordsSontValide);
         
@@ -234,7 +237,7 @@ public class Flotte {
     /**
      * Cr�e une flotte, g�n�re la position des navires al�atoire (appel du SP pr�c�dent) et
      * la retourne.
-     * @return Flotte cree
+     * @return partie1.Flotte cree
      */
     public static Flotte obtenirFlotteAleatoire(){
 

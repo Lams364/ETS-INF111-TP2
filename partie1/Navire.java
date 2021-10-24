@@ -1,3 +1,5 @@
+package partie1;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -13,7 +15,7 @@ import java.util.ArrayList;
  */
 public class Navire {
 
-	//Constantes de direction possible d'un navire
+	//partie1.Constantes de direction possible d'un navire
     private final String NS = "NORD-SUD";
     private final String EO = "EST-OUEST";
 
@@ -27,11 +29,11 @@ public class Navire {
 
     
     /**
-     * Navire: constructeur par parametre d'un navire. Remplis aussi les cases concern�es.
+     * partie1.Navire: constructeur par parametre d'un navire. Remplis aussi les cases concern�es.
      * @param nom: nom du type de navire
-     * @param coordDebut: Coord qui represente la premiere valeur du navire en partant du coin
+     * @param coordDebut: partie1.Coord qui represente la premiere valeur du navire en partant du coin
      * haut-gauche
-     * @param coordFin: Coord qui represente l'autre extremite du navire
+     * @param coordFin: partie1.Coord qui represente l'autre extremite du navire
      * @param couleur: couleur utilise pour represente le navire
      */
     public Navire (String nom, Coord coordDebut, Coord coordFin, Color couleur){
@@ -123,8 +125,8 @@ public class Navire {
 
     /**
      * dejaRecuTir: retourne vrai si la coordonnee recue a deja touche au navire.
-     * @param tir: Coord du tir
-     * @return: boolean de l'existence du tir sur une Coord du navire
+     * @param tir: partie1.Coord du tir
+     * @return: boolean de l'existence du tir sur une partie1.Coord du navire
      */
     public boolean dejaRecuTir(Coord tir){
 
@@ -141,8 +143,8 @@ public class Navire {
     /**
      * tirAtouche: retourne vrai si la coordonnee recue touche au navire actuel (this) et faux 
      * autrement (implique une boucle de recherche). Retient aussi la coordonnee si elle l�a touche
-     * @param tir: Coord du tir
-     * @return: boolean de la presence du tir sur une Coord du navire 
+     * @param tir: partie1.Coord du tir
+     * @return: boolean de la presence du tir sur une partie1.Coord du navire
      */
     public boolean tirAtouche(Coord tir){
 
@@ -169,7 +171,7 @@ public class Navire {
     /**
      * chevauche: retourne vrai si une des positions du navire recu touche a une des positions 
      * du navire actuel (en ligne ou en colonne).
-     * @param navireAutre: Navire auquel verifie s'il existe un chevauchement
+     * @param navireAutre: partie1.Navire auquel verifie s'il existe un chevauchement
      * @return boolean du chevauchement
      */
     public boolean chevauche(Navire navireAutre){
@@ -188,7 +190,7 @@ public class Navire {
 
     /**
      * positionTouche: retourne vrai si la coordonnee du tir est entre le debut et la fin du navire
-     * @param tir : Coord du tir
+     * @param tir : partie1.Coord du tir
      * @return boolean 
      */
     private boolean positionTouche(Coord tir){

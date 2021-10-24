@@ -1,3 +1,4 @@
+package partie1;
 
 import java.awt.Color;
 /**
@@ -115,7 +116,7 @@ public class UtilitaireGrilleGui {
 	}
 
 	/**
-	 * Remet le texte du gui dans leurs conditions initiales Constantes.VIDE
+	 * Remet le texte du gui dans leurs conditions initiales partie1.Constantes.VIDE
 	 * dans chaque case.
 	 * 
 	 * @param gui
@@ -139,7 +140,7 @@ public class UtilitaireGrilleGui {
 	}	
 	
 	/**
-	 * Remet les couleurs du gui � Constantes.COULEUR_FOND
+	 * Remet les couleurs du gui � partie1.Constantes.COULEUR_FOND
 	 * 
 	 * @param gui
 	 */

@@ -1,3 +1,5 @@
+package partie1;
+
 import java.awt.Color;
 
 /**
@@ -9,7 +11,7 @@ import java.awt.Color;
  */
 public class Constantes {
 	
-	// Constantes initiales pour les couleurs du jeu (valeurs arbitraires).
+	// partie1.Constantes initiales pour les couleurs du jeu (valeurs arbitraires).
 	public static final Color COULEUR_FOND = Color.WHITE;
 	public static final Color COULEUR_TEXTE = Color.BLACK;
 

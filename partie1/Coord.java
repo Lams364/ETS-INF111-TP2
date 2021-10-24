@@ -1,3 +1,5 @@
+package partie1;
+
 /**
  * Cet enregistrement repr�sente les coordonn�es 
  * possible dans diff�rents jeux de grille.
@@ -44,7 +46,7 @@ public class Coord {
 	}
 	
 	/**
-	 * Une version String d'un Coord.
+	 * Une version String d'un partie1.Coord.
 	 * 
 	 * @return Une cha�ne de caract�res format�e "(x,y)"
 	 */
