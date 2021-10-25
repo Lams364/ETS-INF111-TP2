@@ -1,4 +1,5 @@
 package partie2;
+import java.util.ArrayList;
 import java.util.Vector;
 import partie1.*;
 
@@ -20,10 +21,10 @@ public class JoueurDebutant {
 	 */
 	
 	// On aurait pu prendre n'importe quelle collection.
-	private Vector tabCoups;
+	private ArrayList<Coord> tabCoups;
 	
 	public JoueurDebutant(){
-		tabCoups = new Vector();
+		tabCoups = new ArrayList<>();
 	}
 
 	/**

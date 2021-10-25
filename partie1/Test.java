@@ -1,5 +1,7 @@
 package partie1;
 
+import java.util.ArrayList;
+
 /**
  * Programmes de test des classes:
  * partie1.Flotte

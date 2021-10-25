@@ -12,8 +12,8 @@ public class Coord {
 	/*
 	 * Les attributs conserves.
 	 */
-	int ligne;
-	int colonne;
+	public int ligne;
+	public int colonne;
 
 	/**
 	 * Constructeur par d�faut (0,0)

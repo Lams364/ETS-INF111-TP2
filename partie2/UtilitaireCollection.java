@@ -1,4 +1,5 @@
 package partie2;
+import java.util.ArrayList;
 import java.util.Vector;
 import partie1.*;
 
@@ -13,7 +14,7 @@ public class UtilitaireCollection {
 	 * 
 	 * @return Une nouvelle coordonn�e non d�j� attribu�e.
 	 */
-	public static Coord obtenirCoupPasDejaJouer(Vector tableau){
+	public static Coord obtenirCoupPasDejaJouer(ArrayList tableau){
 
 		Coord c;
 
@@ -36,7 +37,7 @@ public class UtilitaireCollection {
 	 * @return
 	 */
 
-	public static boolean tableauContientCoord(Vector tableau, Coord c){
+	public static boolean tableauContientCoord(ArrayList tableau, Coord c){
 
 		/*
 		 * Strat�gie : On regarde chaque coup du tableau et s'il est identique
