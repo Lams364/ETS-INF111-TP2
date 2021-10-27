@@ -1,7 +1,7 @@
 package partie1;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Classe qui construit un navire avec les informations fournies.

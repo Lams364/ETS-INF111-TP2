@@ -1,9 +1,7 @@
 package partie2;
 
 import partie1.*;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 
 public class StrategieOrdiIntermediaire {
 
@@ -48,7 +46,17 @@ public class StrategieOrdiIntermediaire {
         return pointTir;
     }
 
+    /**
+     * fonction qui, selon la stratégie, fait des actions consequemment si le tir a touche a un
+     * navire.
+     * @param tir
+     */
     public void aviserTir(Coord tir){
+
+        /* STRATÉGIE
+            La strategie ici est d'ajouter les cases adjacentes au tir entre en parametre.
+            Les cases adjacentes en NORD,SUD,EST et OUEST sont donc ajoutees.
+         */
 
         Coord pointTemporaire;
 

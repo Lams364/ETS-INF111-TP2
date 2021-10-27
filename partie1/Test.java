@@ -1,6 +1,6 @@
 package partie1;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Programmes de test des classes:
