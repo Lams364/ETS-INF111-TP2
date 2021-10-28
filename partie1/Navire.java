@@ -109,14 +109,10 @@ public class Navire {
         // Pour tous les coups touches du navire, on ajoute ceux uniques a la liste temporaire
         for (Coord pointCoupsTouches : listeCoupsTouches) {
 
-            // Pour tous les points dans la nouvelle liste de points temporaire
-            for(Coord pointListeTemporaire : listeTemporaireCoupsTouche){
-
-                // Si le point de coupsTouche n'est pas egal a un point dans la liste temporaire
-                if(!pointCoupsTouches.equals(pointListeTemporaire)){
+                // Si le point de coupsTouche n'est pas dans la liste temporaire, on l'ajoute
+                if(!listeTemporaireCoupsTouche.contains(pointCoupsTouches)){
                     listeTemporaireCoupsTouche.add(pointCoupsTouches);
                 }
-            }
         }
 
         // On evalue la quantite de coups dans la liste temporaire compare a la longueur du navire
