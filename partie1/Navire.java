@@ -104,6 +104,11 @@ public class Navire {
         // creation d'une nouvelle liste temporaire afin d'enregistrer les differentes 
     	// cases de listeCoupsTouches.
         ArrayList<Coord> listeTemporaireCoupsTouche = new ArrayList<Coord>();
+        
+        if(listeCoupsTouches.size() == 0) {
+        	return false;
+        }
+        
         listeTemporaireCoupsTouche.add(listeCoupsTouches.get(0));
 
         // Pour tous les coups touches du navire, on ajoute ceux uniques a la liste temporaire

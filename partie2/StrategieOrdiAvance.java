@@ -98,7 +98,7 @@ public class StrategieOrdiAvance extends StrategieOrdiIntermediaire {
                 //on obtient un coup aleatoirement qui n'a pas ete jouer
                 pointTemporaire = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJouees);
         }
-        listeCoupsJouees.add(pointTemporaire);
+        listeCoupsJouees.add(new Coord(pointTemporaire.ligne, pointTemporaire.colonne));
         return pointTemporaire;
     }
 

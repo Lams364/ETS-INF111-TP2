@@ -216,13 +216,13 @@ public class DemarrerBatailleNavale {
 	
 			case Constantes.INTERMEDIAIRE : {  
 				
-				// �crivez le code n�cessaire ici
+				tir =((StrategieOrdiIntermediaire) ordi).getTir();
 				
 			}break;
 	
 			case Constantes.AVANCE : {
 				
-				// �crivez le code n�cessaire ici
+				tir =((StrategieOrdiAvance) ordi).getTir();
 				
 			}break;
 			
