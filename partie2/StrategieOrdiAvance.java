@@ -5,22 +5,22 @@ import partie1.Coord;
 
 import java.util.*;
 
-public class StrategieOrdiAvance {
+public class StrategieOrdiAvance extends StrategieOrdiIntermediaire {
 
-    private ArrayList<Coord> listeCoupsJouees;
-    private LinkedList<Coord> listeCoordAdjacents;
-    boolean traitePremiereDiagonale = true;
-    boolean traiteDeuxiemeDiagonale = false;
-    Coord cDiag = new Coord(0,0);
+    boolean traitePremiereDiagonale;
+    boolean traiteDeuxiemeDiagonale;
+    Coord cDiag;
 
     /**
      * Constructeur par défaut
      */
     public StrategieOrdiAvance(){
 
-        listeCoupsJouees = new ArrayList<>();
-        listeCoordAdjacents = new LinkedList<>();
-
+        // appel du constructeur par défaut de StrategieOrdiIntermediaire
+        super();
+        cDiag = new Coord(0,0);
+        traitePremiereDiagonale = true;
+        traiteDeuxiemeDiagonale = false;
     }
 
     /**
@@ -37,7 +37,7 @@ public class StrategieOrdiAvance {
         des cases non déjà touchées par un tir.
          */
 
-        Coord point = new Coord();
+        Coord pointTemporaire;
 
         // si la collection de cases adjacentes a des coordonnes
         if (listeCoordAdjacents.size() == 0) {
@@ -78,73 +78,28 @@ public class StrategieOrdiAvance {
             if (!traitePremiereDiagonale && !traiteDeuxiemeDiagonale){
                 cDiag = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJouees);
             }
-            point = cDiag;
+            pointTemporaire = cDiag;
         } else {
 
             do {
                 // on etablie la variable temporaire a un point de la collection et on efface
                 // ensuite le point dans la collection
-                point = listeCoordAdjacents.getFirst();
+                pointTemporaire = listeCoordAdjacents.getFirst();
                 listeCoordAdjacents.removeFirst();
 
             // tant que la coordonnee a deja ete jouee et qu'il reste des coordonnees dans la
                 // collection
-            } while (UtilitaireCollection.tableauContientCoord(listeCoupsJouees,point)
+            } while (UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire)
                         && listeCoordAdjacents.size() > 0);
 
             // s'il ne reste plus aucun point dans la collection
             if (listeCoordAdjacents.size()==0)
 
                 //on obtient un coup aleatoirement qui n'a pas ete jouer
-                point = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJouees);
+                pointTemporaire = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJouees);
         }
-        listeCoupsJouees.add(point);
-        return point;
+        listeCoupsJouees.add(pointTemporaire);
+        return pointTemporaire;
     }
-
-
-    /**
-     * fonction qui, selon la stratégie, fait des actions consequemment si le tir a touche a un
-     * navire.
-     * @param tir
-     */
-    public void aviserTir(Coord tir){
-
-        /* STRATÉGIE
-            La strategie ici est d'ajouter les cases adjacentes au tir entre en parametre.
-            Les cases adjacentes en NORD,SUD,EST et OUEST sont donc ajoutees.
-         */
-
-        Coord pointTemporaire;
-
-        pointTemporaire = new Coord();
-
-        // rajouter les conditions afin que les points ne depassent pas la grille
-
-        // construction de la coordonnee au NORD du tir
-        pointTemporaire.ligne = tir.ligne + 1;
-        pointTemporaire.colonne  = tir.colonne;
-        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire))
-            listeCoordAdjacents.add(pointTemporaire);
-
-        // construction de la coordonnee au SUD du tir
-        pointTemporaire.ligne = tir.ligne - 1;
-        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire))
-            listeCoordAdjacents.add(pointTemporaire);
-
-        // construction de la coordonnee a l'OUEST du tir
-        pointTemporaire.ligne = tir.ligne;
-        pointTemporaire.colonne  = tir.colonne - 1;
-        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire))
-            listeCoordAdjacents.add(pointTemporaire);
-
-        // construction de la coordonnee a l'EST du tir
-        pointTemporaire.colonne  = tir.colonne + 1;
-        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire))
-            listeCoordAdjacents.add(pointTemporaire);
-
-    }
-
-
 
 }

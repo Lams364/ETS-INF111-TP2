@@ -120,15 +120,15 @@ public class DemarrerBatailleNavale {
 		else if(menu.equals(
 				Constantes.OPTIONS[Constantes.INTERMEDIAIRE])){
 
-			//JoueurIntermediaire ordi = new JoueurIntermediaire(); //TODO
-			//demarrerPartie(ordi, flotteOrdi, Constantes.INTERMEDIAIRE, gui); //TODO
+			StrategieOrdiIntermediaire ordi = new StrategieOrdiIntermediaire();
+			demarrerPartie(ordi, flotteOrdi, Constantes.INTERMEDIAIRE, gui);
 		}		
 
 		else if(menu.equals(
 				Constantes.OPTIONS[Constantes.AVANCE])){
 
-			//JoueurAvance ordi = new JoueurAvance(); // TODO
-			//demarrerPartie(ordi, flotteOrdi, Constantes.AVANCE, gui); // TODO
+			StrategieOrdiAvance ordi = new StrategieOrdiAvance();
+			demarrerPartie(ordi, flotteOrdi, Constantes.AVANCE, gui);
 		}	
 		
 		// Le choix expert.

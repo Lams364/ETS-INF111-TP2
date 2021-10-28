@@ -1,5 +1,7 @@
 package partie1;
 
+import partie2.*;
+
 import java.util.*;
 
 /**
@@ -56,7 +58,12 @@ public class Test {
         
         // Appel de montrerFlotte
         UtilitaireGrilleGui.montrerFlotte(flotteAleatoire,grille);
+
     }
+
+
+
+
 
 
 }

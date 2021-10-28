@@ -5,16 +5,16 @@ import java.util.*;
 
 public class StrategieOrdiIntermediaire {
 
-    private ArrayList<Coord> listCoups;
-    private LinkedList<Coord> listCoordAdjacents;
+    protected ArrayList<Coord> listeCoupsJouees;
+    protected LinkedList<Coord> listeCoordAdjacents;
 
     /**
      * Constructeur par défaut
      */
     public StrategieOrdiIntermediaire(){
 
-        listCoups = new ArrayList<>();
-        listCoordAdjacents = new LinkedList<>();
+        listeCoupsJouees = new ArrayList<>();
+        listeCoordAdjacents = new LinkedList<>();
 
     }
 
@@ -28,21 +28,21 @@ public class StrategieOrdiIntermediaire {
         Coord pointTir = new Coord();
 
         // tant que la liste des cases adjacentes n'est pas vide
-        while (listCoordAdjacents.size() > 0){
+        while (listeCoordAdjacents.size() > 0){
 
             // le point a tester est le premier point de la liste
-            pointTir = listCoordAdjacents.getFirst();
+            pointTir = listeCoordAdjacents.getFirst();
 
             // si le point n'a pas deja ete tirer
-            if (!UtilitaireCollection.tableauContientCoord(listCoups,pointTir)) {
+            if (!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTir)) {
                 return pointTir;
             }
             // on enleve le point de la liste afin de ne pas le tester a nouveau au prochain tour
-            listCoordAdjacents.removeFirst();
+            listeCoordAdjacents.removeFirst();
         }
         // si on est sorti de la boucle, c'est qu'il n'y a plus aucun point dans la liste
         // on retourne donc un tir aleatoire qui n'a pas deja ete tirer
-        pointTir = UtilitaireCollection.obtenirCoupPasDejaJouer(listCoups);
+        pointTir = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJouees);
         return pointTir;
     }
 
@@ -53,7 +53,7 @@ public class StrategieOrdiIntermediaire {
      */
     public void aviserTir(Coord tir){
 
-        /* STRATÉGIE
+        /*                                *STRATÉGIE*
             La strategie ici est d'ajouter les cases adjacentes au tir entre en parametre.
             Les cases adjacentes en NORD,SUD,EST et OUEST sont donc ajoutees.
          */
@@ -67,24 +67,24 @@ public class StrategieOrdiIntermediaire {
         // construction de la coordonnee au NORD du tir
         pointTemporaire.ligne = tir.ligne + 1;
         pointTemporaire.colonne  = tir.colonne;
-        if(!UtilitaireCollection.tableauContientCoord(listCoups,pointTemporaire))
-            listCoordAdjacents.add(pointTemporaire);
+        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire))
+            listeCoordAdjacents.add(pointTemporaire);
 
         // construction de la coordonnee au SUD du tir
         pointTemporaire.ligne = tir.ligne - 1;
-        if(!UtilitaireCollection.tableauContientCoord(listCoups,pointTemporaire))
-            listCoordAdjacents.add(pointTemporaire);
+        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire))
+            listeCoordAdjacents.add(pointTemporaire);
 
         // construction de la coordonnee a l'OUEST du tir
         pointTemporaire.ligne = tir.ligne;
         pointTemporaire.colonne  = tir.colonne - 1;
-        if(!UtilitaireCollection.tableauContientCoord(listCoups,pointTemporaire))
-            listCoordAdjacents.add(pointTemporaire);
+        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire))
+            listeCoordAdjacents.add(pointTemporaire);
 
         // construction de la coordonnee a l'EST du tir
         pointTemporaire.colonne  = tir.colonne + 1;
-        if(!UtilitaireCollection.tableauContientCoord(listCoups,pointTemporaire))
-            listCoordAdjacents.add(pointTemporaire);
+        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire))
+            listeCoordAdjacents.add(pointTemporaire);
 
     }
 
