@@ -84,22 +84,23 @@ public class StrategieOrdiAvance extends StrategieOrdiIntermediaire {
             pointTemporaire = cDiag;
         } else {
 
-            do {
-                // on etablie la variable temporaire a un point de la collection et on efface
-                // ensuite le point dans la collection
-                pointTemporaire = listeCoordAdjacents.getFirst();
-                listeCoordAdjacents.removeFirst();
+            if(listeCoordAdjacents.size() != 0) {
+                do {
+                    // on etablie la variable temporaire a un point de la collection et on efface
+                    // ensuite le point dans la collection
+                    pointTemporaire = listeCoordAdjacents.getFirst();
+                    listeCoordAdjacents.removeFirst();
 
-            // tant que la coordonnee a deja ete jouee et qu'il reste des coordonnees dans la
-                // collection
-            } while (UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire)
+                    // tant que la coordonnee a deja ete jouee et qu'il reste des coordonnees dans la
+                    // collection
+                } while (UtilitaireCollection.tableauContientCoord(listeCoupsJouees, pointTemporaire)
                         && listeCoordAdjacents.size() > 0);
-
-            // s'il ne reste plus aucun point dans la collection
-            if (listeCoordAdjacents.size()==0)
+            } else {
 
                 //on obtient un coup aleatoirement qui n'a pas ete jouer
                 pointTemporaire = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJouees);
+
+            }
         }
         listeCoupsJouees.add(new Coord(pointTemporaire.ligne, pointTemporaire.colonne));
         return pointTemporaire;

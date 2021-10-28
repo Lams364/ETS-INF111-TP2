@@ -1,19 +1,10 @@
 package partie1;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Point;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 /**
  * Grille de jeu rectangulaire d'au maximum MAX_LIGNES X MAX_COLONNES
@@ -244,6 +235,7 @@ public class GrilleGui  implements Runnable{
 	public void setCouleurFond(Coord c, Color couleurFond){
 		
 	        grille[c.ligne][c.colonne].setBackground(couleurFond);
+	        grille[c.ligne][c.colonne].setOpaque(true);
 	}
 
 	/**
@@ -283,6 +275,7 @@ public class GrilleGui  implements Runnable{
 		cadre.setDefaultCloseOperation(modeFermeture);
 		
 		// Plein �cran
+		cadre.setSize(2560,1600);
 		cadre.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		// On ne bouge plus la taille.
@@ -309,7 +302,7 @@ public class GrilleGui  implements Runnable{
 			// Le panneau du haut est plein �cran s'il n'y a pas de menu.
 			panneauPrincipal.add(panneauHaut);
 		}
-		cadre.setVisible(true);		
+		cadre.setVisible(true);
 	}
 
 	private void ajouterPanneaux(JPanel panneauPrincipal, JPanel panneauHaut) {
@@ -320,9 +313,9 @@ public class GrilleGui  implements Runnable{
 		// Obtenir les dimensions de l'�cran.
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
-
 		Dimension dh = new Dimension (dim.width, (int)(dim.height*.8));
 		Dimension db = new Dimension (dim.width, (int)(dim.height*.1));
+
 
 		// La dimension pour l'allure de la fen�tre.
 		panneauHaut.setMinimumSize(dh);

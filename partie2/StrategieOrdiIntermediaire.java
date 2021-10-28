@@ -32,6 +32,7 @@ public class StrategieOrdiIntermediaire {
 
             // le point a tester est le premier point de la liste
             pointTir = listeCoordAdjacents.getFirst();
+            listeCoordAdjacents.removeFirst();
 
             // si le point n'a pas deja ete tirer
             if (!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTir)) {
@@ -67,24 +68,28 @@ public class StrategieOrdiIntermediaire {
         // construction de la coordonnee au NORD du tir
         pointTemporaire.ligne = tir.ligne + 1;
         pointTemporaire.colonne  = tir.colonne;
-        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire))
-            listeCoordAdjacents.add(pointTemporaire);
+        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire)
+                && UtilitaireFonctions.coordEstDansLaGrille(pointTemporaire))
+            listeCoordAdjacents.add(new Coord(pointTemporaire.ligne, pointTemporaire.colonne));
 
         // construction de la coordonnee au SUD du tir
         pointTemporaire.ligne = tir.ligne - 1;
-        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire))
-            listeCoordAdjacents.add(pointTemporaire);
+        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire)
+                && UtilitaireFonctions.coordEstDansLaGrille(pointTemporaire))
+            listeCoordAdjacents.add(new Coord(pointTemporaire.ligne, pointTemporaire.colonne));
 
         // construction de la coordonnee a l'OUEST du tir
         pointTemporaire.ligne = tir.ligne;
         pointTemporaire.colonne  = tir.colonne - 1;
-        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire))
-            listeCoordAdjacents.add(pointTemporaire);
+        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire)
+                && UtilitaireFonctions.coordEstDansLaGrille(pointTemporaire))
+            listeCoordAdjacents.add(new Coord(pointTemporaire.ligne, pointTemporaire.colonne));
 
         // construction de la coordonnee a l'EST du tir
         pointTemporaire.colonne  = tir.colonne + 1;
-        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire))
-            listeCoordAdjacents.add(pointTemporaire);
+        if(!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemporaire)
+                && UtilitaireFonctions.coordEstDansLaGrille(pointTemporaire))
+            listeCoordAdjacents.add(new Coord(pointTemporaire.ligne, pointTemporaire.colonne));
 
     }
 
