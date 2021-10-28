@@ -45,31 +45,34 @@ public class StrategieOrdiAvance extends StrategieOrdiIntermediaire {
 
                 // tant que la coordonnee a deja ete jouer et que cDiag est dans la grille
                 while (UtilitaireCollection.tableauContientCoord(listeCoupsJouees, cDiag)
-                        && cDiag.colonne <= Constantes.TAILLE && cDiag.ligne <= Constantes.TAILLE) {
+                        && cDiag.colonne <= (Constantes.TAILLE - 1) && cDiag.ligne <= (Constantes.TAILLE - 1)) {
 
                     // on parcours la premiere diagonale
                     cDiag.ligne++;
                     cDiag.colonne++;
                 }
                 // si cDiag a atteint une des bornes de la grille
-                if (cDiag.ligne >= Constantes.TAILLE || cDiag.colonne >= Constantes.TAILLE){
+                if (cDiag.ligne > (Constantes.TAILLE - 1) || cDiag.colonne > (Constantes.TAILLE - 1)){
                     traitePremiereDiagonale = false;
                     traiteDeuxiemeDiagonale = true;
+                    
+                    // Remise des points dans la grille dans l'autre diagonale
                     cDiag.colonne = 0;
+                    cDiag.ligne = (Constantes.TAILLE - 1);
                 }
             }
             if (traiteDeuxiemeDiagonale) {
 
                 // tant que la coordonnee a deja ete jouer et que cDiag est dans la grille
                 while (UtilitaireCollection.tableauContientCoord(listeCoupsJouees, cDiag)
-                        && cDiag.colonne <= Constantes.TAILLE && cDiag.ligne <= Constantes.TAILLE) {
+                        && cDiag.colonne <= (Constantes.TAILLE - 1) && cDiag.ligne <= (Constantes.TAILLE - 1)) {
 
                     // on parcours la deuxieme diagonale
                     cDiag.ligne--;
                     cDiag.colonne++;
                 }
                 // si cDiag a atteint une des bornes de la grille
-                if (cDiag.ligne >= Constantes.TAILLE || cDiag.colonne >= Constantes.TAILLE){
+                if (cDiag.colonne > (Constantes.TAILLE -1)){
                     traiteDeuxiemeDiagonale = false;
                 }
 

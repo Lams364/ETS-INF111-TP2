@@ -96,7 +96,7 @@ public class DemarrerBatailleNavale {
 
 		// On remet la page blanche pour v�rifier que l'application trouve bien 
 		// les navires.
-		UtilitaireGrilleGui.reinitialiserGui(gui);
+		//UtilitaireGrilleGui.reinitialiserGui(gui);
 
 		// On obtient l'option du menu qui a �t� cliqu�.
 		String menu = gui.getOptionMenuClique();
@@ -171,7 +171,7 @@ public class DemarrerBatailleNavale {
 			UtilitaireGrilleGui.afficherTir(gui, tir);
 			
 			// Donne le temps de voir le tir (debug).
-			UtilitaireGrilleGui.pause(100);
+			UtilitaireGrilleGui.pause(10);
 
 			// Si le tir a touch� mais � une nouvelle position
 			// On affiche la case touch�e.
