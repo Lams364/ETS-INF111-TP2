@@ -101,7 +101,7 @@ public class Flotte {
      * @param navire : navire a ajoute
      * @return int de l'erreur
      */
-    private int ajouterNavire(Navire navire){
+    public int ajouterNavire(Navire navire){
 
     	// Pour tous les navires de la flotte
         for(Navire navireCourant : collectionDeNavires){

@@ -41,4 +41,16 @@ public class UtilitaireFonctions {
   			 nbAlea(0, Constantes.TAILLE - 1), 
   			 nbAlea(0, Constantes.TAILLE - 1));
    }
+
+	/**
+	 * fonction qui sert a indiquer si un point est dans la grille
+	 * @param coord
+	 * @return
+	 */
+	public static boolean coordEstDansLaGrille(Coord coord){
+	   return coord.colonne <= (Constantes.TAILLE - 1) && coord.ligne <= (Constantes.TAILLE - 1)
+			   && coord.colonne >= 0 && coord.ligne >= 0;
+   }
+
+
 }

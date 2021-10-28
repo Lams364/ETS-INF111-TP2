@@ -1,7 +1,6 @@
 package partie2;
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Toolkit;
+import java.awt.*;
+
 import partie1.*;
 
 
@@ -44,6 +43,7 @@ public class DemarrerBatailleNavale {
 
 	static int nbRepetitions = 0;
 	static int nbTirs = 0;
+	static int tempsPause = 200;
 
 	public static void main(String[] args) {
 
@@ -85,7 +85,14 @@ public class DemarrerBatailleNavale {
 	public static void demarrerModeOrdi(GrilleGui gui){
 
 		// On cr�e une nouvelle flotte al�atoire et on la montre.
-		Flotte flotteOrdi = Flotte.obtenirFlotteAleatoire();
+//		Flotte flotteOrdi = Flotte.obtenirFlotteAleatoire();
+
+		// navire et coord pour but de test
+		Flotte flotteOrdi = new Flotte();
+		Navire navire1 = new Navire("elDorado",new Coord(4,3),new Coord(4,6), Color.MAGENTA);
+		Navire navire2 = new Navire("ElColones",new Coord(5,8),new Coord(9,8),Color.CYAN);
+		flotteOrdi.ajouterNavire(navire1);
+		flotteOrdi.ajouterNavire(navire2);
 
 		UtilitaireGrilleGui.montrerFlotte(flotteOrdi, gui);
 
@@ -171,7 +178,7 @@ public class DemarrerBatailleNavale {
 			UtilitaireGrilleGui.afficherTir(gui, tir);
 			
 			// Donne le temps de voir le tir (debug).
-			UtilitaireGrilleGui.pause(10);
+			UtilitaireGrilleGui.pause(tempsPause);
 
 			// Si le tir a touch� mais � une nouvelle position
 			// On affiche la case touch�e.
@@ -255,21 +262,21 @@ public class DemarrerBatailleNavale {
 				
 			}break;
 				
-			case Constantes.INTERMEDIAIRE :{  
-				
-				// �crivez le code n�cessaire ici
-				
+			case Constantes.INTERMEDIAIRE :{
+
+				((StrategieOrdiIntermediaire) ordi).aviserTir(tir);
+
 			}break;
 	
 			case Constantes.AVANCE :{
-				
-				// �crivez le code n�cessaire ici
+
+				((StrategieOrdiAvance) ordi).aviserTir(tir);
 				
 			}break;
 			
 			case Constantes.EXPERT :  {
-	
-				// �crivez le code n�cessaire ici
+
+				//((StrategieOrdiExpert) ordi).aviserTir(tir);
 	
 			}break;
 			
