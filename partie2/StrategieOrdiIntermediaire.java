@@ -1,4 +1,4 @@
-package partie2;
+ package partie2;
 
 import partie1.*;
 import java.util.*;
@@ -36,14 +36,17 @@ public class StrategieOrdiIntermediaire {
 
             // si le point n'a pas deja ete tirer
             if (!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTir)) {
-                return pointTir;
+            	listeCoupsJouees.add(new Coord(pointTir.ligne, pointTir.colonne));
+            	return pointTir;
             }
             // on enleve le point de la liste afin de ne pas le tester a nouveau au prochain tour
             listeCoordAdjacents.removeFirst();
         }
         // si on est sorti de la boucle, c'est qu'il n'y a plus aucun point dans la liste
-        // on retourne donc un tir aleatoire qui n'a pas deja ete tirer
+        // on retourne donc un tir aleatoire qui n'a pas deja ete tirer apres l'avoir ajoute a nos
+        // tirs precedents
         pointTir = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJouees);
+        listeCoupsJouees.add(new Coord(pointTir.ligne, pointTir.colonne));
         return pointTir;
     }
 

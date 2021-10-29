@@ -81,7 +81,7 @@ public class StrategieOrdiAvance extends StrategieOrdiIntermediaire {
             if (!traitePremiereDiagonale && !traiteDeuxiemeDiagonale){
                 cDiag = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJouees);
             }
-            pointTemporaire = cDiag;
+            pointTemporaire = new Coord(cDiag.ligne, cDiag.colonne);
         } else {
 
             if(listeCoordAdjacents.size() != 0) {

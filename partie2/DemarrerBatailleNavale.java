@@ -85,14 +85,16 @@ public class DemarrerBatailleNavale {
 	public static void demarrerModeOrdi(GrilleGui gui){
 
 		// On cr�e une nouvelle flotte al�atoire et on la montre.
-//		Flotte flotteOrdi = Flotte.obtenirFlotteAleatoire();
+		Flotte flotteOrdi = Flotte.obtenirFlotteAleatoire();
 
 		// navire et coord pour but de test
+		/*
 		Flotte flotteOrdi = new Flotte();
 		Navire navire1 = new Navire("elDorado",new Coord(4,3),new Coord(4,6), Color.MAGENTA);
 		Navire navire2 = new Navire("ElColones",new Coord(5,8),new Coord(9,8),Color.CYAN);
 		flotteOrdi.ajouterNavire(navire1);
 		flotteOrdi.ajouterNavire(navire2);
+		*/
 
 		UtilitaireGrilleGui.montrerFlotte(flotteOrdi, gui);
 
