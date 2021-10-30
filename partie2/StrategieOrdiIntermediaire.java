@@ -9,7 +9,7 @@ public class StrategieOrdiIntermediaire {
     protected LinkedList<Coord> listeCoordAdjacents;
 
     /**
-     * Constructeur par défaut
+     * Constructeur par defaut
      */
     public StrategieOrdiIntermediaire(){
 
@@ -20,7 +20,7 @@ public class StrategieOrdiIntermediaire {
 
 
     /**
-     * fonction qui trouve un point dans la grille selon la statégie des cases adjacentes
+     * fonction qui trouve un point dans la grille selon la strategie des cases adjacentes
      * @return
      */
     public Coord getTir(){
@@ -32,7 +32,6 @@ public class StrategieOrdiIntermediaire {
 
             // le point a tester est le premier point de la liste
             pointTir = listeCoordAdjacents.getFirst();
-            listeCoordAdjacents.removeFirst();
 
             // si le point n'a pas deja ete tirer
             if (!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTir)) {
@@ -42,29 +41,29 @@ public class StrategieOrdiIntermediaire {
             // on enleve le point de la liste afin de ne pas le tester a nouveau au prochain tour
             listeCoordAdjacents.removeFirst();
         }
-        // si on est sorti de la boucle, c'est qu'il n'y a plus aucun point dans la liste
-        // on retourne donc un tir aleatoire qui n'a pas deja ete tirer apres l'avoir ajoute a nos
-        // tirs precedents
+        /*
+        * si on est sorti de la boucle, c'est qu'il n'y a plus aucun point dans la liste
+        * on retourne donc un tir aleatoire qui n'a pas deja ete tirer apres l'avoir ajoute a nos
+        * tirs precedents
+        */
         pointTir = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJouees);
         listeCoupsJouees.add(new Coord(pointTir.ligne, pointTir.colonne));
         return pointTir;
     }
 
     /**
-     * fonction qui, selon la stratégie, fait des actions consequemment si le tir a touche a un
+     * fonction qui, selon la strategie, fait des actions consequemment si le tir a touche a un
      * navire.
      * @param tir
      */
     public void aviserTir(Coord tir){
 
-        /*                                *STRATÉGIE*
+        /*                                *STRATEGIE*
             La strategie ici est d'ajouter les cases adjacentes au tir entre en parametre.
             Les cases adjacentes en NORD,SUD,EST et OUEST sont donc ajoutees.
          */
 
-        Coord pointTemporaire;
-
-        pointTemporaire = new Coord();
+        Coord pointTemporaire = new Coord();
 
         // rajouter les conditions afin que les points ne depassent pas la grille
 

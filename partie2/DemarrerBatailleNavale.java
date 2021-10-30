@@ -72,8 +72,8 @@ public class DemarrerBatailleNavale {
 			demarrerModeOrdi(gui);
 
 			// Petit message qui donne le temps de voir ce qui s'est pass�e.
-			JOptionPane.showMessageDialog(null,"Solution trouv�e en " +
-			nbTirs 	+ 	" coups avec " + nbRepetitions + " r�p�tition de tirs");
+			JOptionPane.showMessageDialog(null,"Solution trouvee en " +
+			nbTirs 	+ 	" coups avec " + nbRepetitions + " repetition de tirs");
 
 		}
 	}
@@ -142,7 +142,7 @@ public class DemarrerBatailleNavale {
 		
 		// Le choix expert.
 		else
-			if(JOptionPane.showConfirmDialog(null,"Pas encore impl�ment�") == 
+			if(JOptionPane.showConfirmDialog(null,"Pas encore implemente") == 
 			JOptionPane.CANCEL_OPTION)
 				System.exit(0);
 	}
