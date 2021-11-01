@@ -88,13 +88,15 @@ public class DemarrerBatailleNavale {
 		Flotte flotteOrdi = Flotte.obtenirFlotteAleatoire();
 
 		// navire et coord pour but de test
-		/*
-		Flotte flotteOrdi = new Flotte();
-		Navire navire1 = new Navire("elDorado",new Coord(4,3),new Coord(4,6), Color.MAGENTA);
-		Navire navire2 = new Navire("ElColones",new Coord(5,8),new Coord(9,8),Color.CYAN);
-		flotteOrdi.ajouterNavire(navire1);
-		flotteOrdi.ajouterNavire(navire2);
-		*/
+
+//		Flotte flotteOrdi = new Flotte();
+//		Navire navire1 = new Navire("elDorado",new Coord(4,3),new Coord(4,6), Color.MAGENTA);
+//		Navire navire2 = new Navire("ElColones",new Coord(5,8),new Coord(9,8),Color.CYAN);
+//		Navire navire3 = new Navire("Commando",new Coord(8,4),new Coord(8,6),Color.CYAN);
+//		flotteOrdi.ajouterNavire(navire1);
+//		flotteOrdi.ajouterNavire(navire2);
+//		flotteOrdi.ajouterNavire(navire3);
+
 
 		UtilitaireGrilleGui.montrerFlotte(flotteOrdi, gui);
 
@@ -138,13 +140,14 @@ public class DemarrerBatailleNavale {
 
 			StrategieOrdiAvance ordi = new StrategieOrdiAvance();
 			demarrerPartie(ordi, flotteOrdi, Constantes.AVANCE, gui);
-		}	
-		
-		// Le choix expert.
-		else
-			if(JOptionPane.showConfirmDialog(null,"Pas encore implemente") == 
-			JOptionPane.CANCEL_OPTION)
-				System.exit(0);
+		}
+
+		else if(menu.equals(
+				Constantes.OPTIONS[Constantes.EXPERT])){
+
+			StrategieOrdiExpert ordi = new StrategieOrdiExpert();
+			demarrerPartie(ordi, flotteOrdi, Constantes.EXPERT, gui);
+		}
 	}
 
 	/**
@@ -236,8 +239,8 @@ public class DemarrerBatailleNavale {
 			}break;
 			
 			case Constantes.EXPERT :  {
-	
-				// �crivez le code n�cessaire ici
+
+				tir =((StrategieOrdiExpert) ordi).getTir();
 	
 			}break;
 		
@@ -278,7 +281,7 @@ public class DemarrerBatailleNavale {
 			
 			case Constantes.EXPERT :  {
 
-				//((StrategieOrdiExpert) ordi).aviserTir(tir);
+				((StrategieOrdiExpert) ordi).aviserTir(tir);
 	
 			}break;
 			
