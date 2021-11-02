@@ -34,13 +34,13 @@ public class StrategieOrdiAvance extends StrategieOrdiIntermediaire {
         Si la collection est vide, les tirs generes sont sur la premiere diagonale.
         Si toutes les cases de cette diagonale ont ete visitees, on tire sur la deuxieme
         diagonale. Lorsque les deux diagonales ont toutes ete visees, on tire au hasard dans
-        des cases non deja  touchees par un tir.
+        des cases non dejaï¿½ touchees par un tir.
          */
 
         Coord pointTemporaire = new Coord();
 
         // si la collection de cases adjacentes a des coordonnes
-        if (listeCoordAdjacents.size() == 0) {
+        if (listeCoordAdjacents.isEmpty()) {
         	
             if (traitePremiereDiagonale) {
 
@@ -102,7 +102,7 @@ public class StrategieOrdiAvance extends StrategieOrdiIntermediaire {
         	}
         	
         	// si la file d'adjacents est maintenant vide et qu'aucun point n'est selectionne
-            if (listeCoordAdjacents.size() == 0 && pointTemporaire == null) {
+            if (listeCoordAdjacents.isEmpty() && pointTemporaire == null) {
             	
                 //on obtient un coup aleatoirement qui n'a pas ete jouer
                 pointTemporaire = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJouees);

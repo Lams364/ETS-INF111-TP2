@@ -38,7 +38,7 @@ public class Flotte {
     public Flotte(){
         ArrayList<Navire> collectionDeNavires = new ArrayList<>();
 
-        // établir la taille minimal du arraylist a 5 afin qu'il n'aille pas a s'agrandir
+        // etablir la taille minimal du arraylist a 5 afin qu'il n'aille pas a s'agrandir
         collectionDeNavires.ensureCapacity(5);
     }
 

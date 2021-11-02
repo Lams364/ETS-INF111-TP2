@@ -6,8 +6,8 @@ import partie1.Coord;
 public class StrategieOrdiExpert extends StrategieOrdiAvance{
 
     /*
-    Partez de la stratégie avancée et essayez d’ajouter une variante qui améliore cette
-    stratégie (pas besoin d’être compliqué).
+    Partez de la strategie avancee et essayez d’ajouter une variante qui ameliore cette
+    strategie (pas besoin d’être complique).
      */
 
     /**
@@ -18,16 +18,16 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
 
 
         /*                                *STRATEGIE*
-        Si la collection est vide, les tirs générés sont sur la première diagonale.
-        Si toutes les cases de cette diagonale ont été visitées, on tire sur la deuxième
-        diagonale. Lorsque les deux diagonales ont toutes été visées, on tire au hasard dans
-        des cases non déjà touchées par un tir.
+        Si la collection est vide, les tirs generes sont sur la première diagonale.
+        Si toutes les cases de cette diagonale ont ete visitees, on tire sur la deuxième
+        diagonale. Lorsque les deux diagonales ont toutes ete visees, on tire au hasard dans
+        des cases non deja touchees par un tir.
          */
 
         Coord pointTemporaire;
 
         // si la collection de cases adjacentes a des coordonnes
-        if (listeCoordAdjacents.size() == 0) {
+        if (listeCoordAdjacents.isEmpty()) {
             if (traitePremiereDiagonale) {
 
                 // tant que la coordonnee a deja ete jouer et que cDiag est dans la grille

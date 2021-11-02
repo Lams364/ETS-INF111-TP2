@@ -28,7 +28,7 @@ public class StrategieOrdiIntermediaire {
         Coord pointTir = new Coord();
 
         // tant que la liste des cases adjacentes n'est pas vide
-        while (listeCoordAdjacents.size() > 0){
+        while (!listeCoordAdjacents.isEmpty()){
 
             // le point a tester est le premier point de la liste
             pointTir = listeCoordAdjacents.getFirst();

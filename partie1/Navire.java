@@ -199,7 +199,7 @@ public class Navire {
         // Pour tous les points couvert par le navire
         for (Coord point : listeCoordonnes){
 
-            // si le tir est égal au point du navire, on retourne true
+            // si le tir est egal au point du navire, on retourne true
             if(point.equals(tir)) return true;
         }
         // si on sort de la boucle, cela veut dire qu'aucun point etait egal au tir.

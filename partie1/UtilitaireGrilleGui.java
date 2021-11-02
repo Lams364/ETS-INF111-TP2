@@ -45,7 +45,7 @@ public class UtilitaireGrilleGui {
 			// pour tous les points de navireCourant
 			for (Coord point : navireCourant.listeCoordonnes) {
 
-				// on établi la couleur de la grille au case correspondate du navireCourant
+				// on etabli la couleur de la grille au case correspondate du navireCourant
 				gui.setCouleurFond(point, navireCourant.couleur);
 			}
 		}
