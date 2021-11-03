@@ -6,8 +6,8 @@ public class UtilitaireFonctions {
 	
     public static int nbAlea(int min, int max){
   	    /*
-  	     * Strat�gie, on utilise le g�n�rateur de Java qui retourne une valeur
-  	     * r�elle entre 0 et 1[  ensuite, on le ram�ne dans l'intervalle
+  	     * Strategie, on utilise le generateur de Java qui retourne une valeur
+  	     * reelle entre 0 et 1[  ensuite, on le ramene dans l'intervalle
   	     * min..max et on la transforme en entier.
   	     */
 
@@ -33,7 +33,7 @@ public class UtilitaireFonctions {
    // COORDONNEE ALEATOIRE
    //************************
    /*
-    * Retourne une coordonn�e dans la grille entre 0 et  Constantes.TAILLE - 1
+    * Retourne une coordonnee dans la grille entre 0 et  Constantes.TAILLE - 1
     */
    public static Coord coordAleatoire(){
   	 

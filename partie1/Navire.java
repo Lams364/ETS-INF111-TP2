@@ -29,7 +29,7 @@ public class Navire {
 
     
     /**
-     * partie1.Navire: constructeur par parametre d'un navire. Remplis aussi les cases concern�es.
+     * partie1.Navire: constructeur par parametre d'un navire. Remplis aussi les cases concernees.
      * @param nom: nom du type de navire
      * @param coordDebut: partie1.Coord qui represente la premiere valeur du navire en partant du coin
      * haut-gauche
@@ -68,13 +68,13 @@ public class Navire {
         } else if (nbColonne > 1 && (coordDebut.ligne != coordFin.ligne)){
             throw new IllegalArgumentException("Coordonnees EST_OUEST invalide");
 
-        // La ligne n�est pas dans l'intervalle de la grille ou la ligne de d�but est plus
+        // La ligne n'est pas dans l'intervalle de la grille ou la ligne de debut est plus
         // grande que la ligne de coordFin.
         } else if ((coordDebut.ligne > coordFin.ligne) || (coordDebut.ligne >= Constantes.TAILLE
                 || coordFin.ligne >= Constantes.TAILLE)){
             throw new IllegalArgumentException("Ligne invalide");
         
-        // La colonne n�est pas dans l�intervalle de la grille ou la colonne de d�but est
+        // La colonne n'est pas dans l'intervalle de la grille ou la colonne de debut est
         // plus grande que la colonne de coordFin.
         } else if ((coordDebut.colonne > coordFin.colonne) || (coordDebut.colonne >= Constantes.TAILLE
                 || coordFin.colonne >= Constantes.TAILLE)){
@@ -142,7 +142,7 @@ public class Navire {
 
     /**
      * tirAtouche: retourne vrai si la coordonnee recue touche au navire actuel (this) et faux 
-     * autrement (implique une boucle de recherche). Retient aussi la coordonnee si elle l�a touche
+     * autrement (implique une boucle de recherche). Retient aussi la coordonnee si elle l'a touche
      * @param tir: partie1.Coord du tir
      * @return: boolean de la presence du tir sur une partie1.Coord du navire
      */

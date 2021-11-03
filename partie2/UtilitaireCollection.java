@@ -7,12 +7,12 @@ import partie1.*;
 public class UtilitaireCollection {
 
 	/**
-	 * G�n�re al�atoirement des coordonn�es jusqu'� ce qu'une d'entre elles
-	 * ne fasse pas partie du tableau re�u
+	 * Genere aleatoirement des coordonnees jusqu'a ce qu'une d'entre elles
+	 * ne fasse pas partie du tableau recu
 	 * 
 	 * @param tableau
 	 * 
-	 * @return Une nouvelle coordonn�e non d�j� attribu�e.
+	 * @return Une nouvelle coordonnee non deja attribuee.
 	 */
 	public static Coord obtenirCoupPasDejaJouer(ArrayList tableau){
 
@@ -22,7 +22,7 @@ public class UtilitaireCollection {
 
 			c  = UtilitaireFonctions.coordAleatoire();
 
-			//S'arr�te avec un coup pas d�j� jou�
+			//S'arrete avec un coup pas deja joue
 		}while(tableauContientCoord(tableau, c));
 
 		return c;
@@ -30,8 +30,8 @@ public class UtilitaireCollection {
 	}
 	
 	/**
-	 * �quivalent de contains sauf qu'on regarde le contenu des coordonn�es
-	 *  et non seulement leur r�f�rences (deepContains)
+	 * equivalent de contains sauf qu'on regarde le contenu des coordonnees
+	 *  et non seulement leur references (deepContains)
 	 * @param tableau
 	 * @param c
 	 * @return
@@ -40,13 +40,13 @@ public class UtilitaireCollection {
 	public static boolean tableauContientCoord(ArrayList tableau, Coord c){
 
 		/*
-		 * Strat�gie : On regarde chaque coup du tableau et s'il est identique
-		 * au coup c re�cu.  La boucle s'arr�te au tour suivant si elle 
+		 * Strategie : On regarde chaque coup du tableau et s'il est identique
+		 * au coup c recu.  La boucle s'arrete au tour suivant si elle
 		 * le trouve.
 		 */
 		boolean existe = false;
 
-		//it�rateur
+		//iterateur
 		int  i = 0;
 
 		

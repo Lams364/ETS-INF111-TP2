@@ -4,20 +4,20 @@ import java.util.Vector;
 import partie1.*;
 
 /**
- * Joueur qui a d�j� jou�.  Sa strat�gie est un peu meilleur que la 
- * premi�re fois qu'il a  jou�.
+ * Joueur qui a deja joue.  Sa strategie est un peu meilleur que la
+ * premiere fois qu'il a  joue.
  *
- * Il retient ses coups et ne joue pas deux fois le m�me.  Il ne fait rien de 
- * sp�cial s'il est avis� d'avoir touch� un navire.
+ * Il retient ses coups et ne joue pas deux fois le meme.  Il ne fait rien de
+ * special s'il est avise d'avoir touche un navire.
  * 
- * @author Pierre B�lisle
+ * @author Pierre Belisle
  * @version Copyright A2021
  *
  */
 public class JoueurDebutant {
 	
 	/*
-	 * Strat�gie : 
+	 * Strategie :
 	 */
 	
 	// On aurait pu prendre n'importe quelle collection.
@@ -34,10 +34,10 @@ public class JoueurDebutant {
 	public Coord getTir(){
 		
 		/*
-		 * Strat�gie : On obtient un coup pas d�j� jou� du module de collection
-		 * et on l'ajoute � la collection.
+		 * Strategie : On obtient un coup pas deja joue du module de collection
+		 * et on l'ajoute a la collection.
 		 *                  
-		 * La m�thode a �t� mise dans UtilitaireCollection pour r�utilisation 
+		 * La methode a ete mise dans UtilitaireCollection pour reutilisation
 		 */
 		Coord c = UtilitaireCollection.obtenirCoupPasDejaJouer(tabCoups);  
 				

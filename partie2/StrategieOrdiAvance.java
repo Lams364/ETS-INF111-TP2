@@ -34,7 +34,7 @@ public class StrategieOrdiAvance extends StrategieOrdiIntermediaire {
         Si la collection est vide, les tirs generes sont sur la premiere diagonale.
         Si toutes les cases de cette diagonale ont ete visitees, on tire sur la deuxieme
         diagonale. Lorsque les deux diagonales ont toutes ete visees, on tire au hasard dans
-        des cases non deja� touchees par un tir.
+        des cases non deja touchees par un tir.
          */
 
         Coord pointTemporaire = new Coord();
