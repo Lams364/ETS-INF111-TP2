@@ -1,10 +1,10 @@
 package partie2;
 import partie1.*;
 /*
- * Joueur qui joue pour la premi�re fois.  Sa strat�gie n'est pas tr�s bonne.
+ * Joueur qui joue pour la premiere fois.  Sa strategie n'est pas tres bonne.
  * 
  *  * 
- * @author Pierre B�lisle
+ * @author Pierre Belisle
  * @version Copyright A2021
 
  */
@@ -18,10 +18,10 @@ public class JoueurPremiereFois {
 	public Coord getTir(){
 		
 		/*
-		 * Aucune strat�gie.  Retourne un coup au hasard et ne regarde m�me pas 
-		 * s'il a d�j� jou� son coup.
+		 * Aucune strategie.  Retourne un coup au hasard et ne regarde meme pas
+		 * s'il a deja joue son coup.
 		 *                               
-		 * Il ne fait donc rien lorsqu'on l'avise qu'il a touch� un navire.
+		 * Il ne fait donc rien lorsqu'on l'avise qu'il a touche un navire.
 		 */
 		return  UtilitaireFonctions.coordAleatoire();
 		

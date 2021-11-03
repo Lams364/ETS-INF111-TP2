@@ -111,7 +111,7 @@ public class Flotte {
         // Si le navire n'est pas dans la grille, retourne le code d'erreur
         if (!navire.estDansLaGrille()) return POSITION_INVALIDE;
 
-        // Ajout du navire � la flotte et retour d'aucune erreur
+        // Ajout du navire a la flotte et retour d'aucune erreur
         collectionDeNavires.add(navire);
         return AUCUNE_ERREUR;
     }
@@ -159,7 +159,7 @@ public class Flotte {
                 		new Coord(coordDebut.ligne,coordDebut.colonne - longueurAjuste);
                     break;
                     
-                // Valeur par d�faut
+                // Valeur par defaut
                 default : coordFin = new Coord();
             }
             
@@ -183,7 +183,7 @@ public class Flotte {
     }
 
     /**
-     *  Ajoute un � un les navires dans la flotte. Il y a autant de boucles qu�il y a de navires. 
+     *  Ajoute un a un les navires dans la flotte. Il y a autant de boucles qu'il y a de navires.
 	 *	Une boucle se termine lorsque ajouterNavire retourne AUCUNE_ERREUR..
      */
     private void genererPosNavireAleaInsererDsGrille(){
