@@ -9,6 +9,8 @@ public class Test {
             System.out.println(navireCourant.toString());
         }
 
+        UtilitaireGrilleGui UGrille = new UtilitaireGrilleGui();
+
 
     }
 

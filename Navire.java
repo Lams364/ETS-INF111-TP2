@@ -139,6 +139,7 @@ public class Navire {
     private boolean positionTouche(Coord tir){
 
         return listeCoordonnes.contains(tir);
+   //     return tirAtouche(tir);
     }
 
     public boolean estDansLaGrille(){
