@@ -1,6 +1,6 @@
 package partie2;
 import java.util.ArrayList;
-import java.util.Vector;
+
 import partie1.*;
 
 /**
@@ -14,22 +14,21 @@ import partie1.*;
  * @version Copyright A2021
  *
  */
-public class JoueurDebutant {
-	
-	/*
-	 * Strategie :
+public class StrategieOrdiDebutant {
+
+	// collection qui retient les coups qui ont ete joues
+	private ArrayList<Coord> listeCoupsJoues;
+
+	/**
+	 * constructeur par defaut qui initialise la collection de coup touches
 	 */
-	
-	// On aurait pu prendre n'importe quelle collection.
-	private ArrayList<Coord> tabCoups;
-	
-	public JoueurDebutant(){
-		tabCoups = new ArrayList<>();
+	public StrategieOrdiDebutant(){
+		listeCoupsJoues = new ArrayList<>();
 	}
 
 	/**
-	 * 
-	 * @return
+	 * cette fonction permet d'obtenir le tir de la strategie
+	 * @return le tir
 	 */
 	public Coord getTir(){
 		
@@ -39,13 +38,19 @@ public class JoueurDebutant {
 		 *                  
 		 * La methode a ete mise dans UtilitaireCollection pour reutilisation
 		 */
-		Coord c = UtilitaireCollection.obtenirCoupPasDejaJouer(tabCoups);  
+
+		Coord tir = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJoues);
 				
-		tabCoups.add(c);
+		listeCoupsJoues.add(tir);
 		
-		return c; 
+		return tir;
 		
 	}
-	
+
+	/**
+	 * cette fonction n'a aucune effet, elle est seulement en place afin de prevenir par soucis
+	 * de compatibilite
+	 * @param c
+	 */
 	public void aviseTouche(Coord c){}	
 }

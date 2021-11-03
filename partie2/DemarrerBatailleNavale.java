@@ -1,5 +1,4 @@
 package partie2;
-import java.awt.*;
 
 import partie1.*;
 
@@ -113,14 +112,14 @@ public class DemarrerBatailleNavale {
 		if(menu.equals(
 				Constantes.OPTIONS[Constantes.PREMIERE_FOIS])){
 
-			JoueurPremiereFois ordi =  new JoueurPremiereFois();
+			StrategieOrdiPremiereFois ordi =  new StrategieOrdiPremiereFois();
 			demarrerPartie(ordi, flotteOrdi, Constantes.PREMIERE_FOIS, gui);
 
 		}
 		else if(menu.equals(
 				Constantes.OPTIONS[Constantes.DEBUTANT])){
 
-			JoueurDebutant ordi = new JoueurDebutant();
+			StrategieOrdiDebutant ordi = new StrategieOrdiDebutant();
 			demarrerPartie(ordi, flotteOrdi, Constantes.DEBUTANT, gui);
 		}
 		else if(menu.equals(
@@ -162,8 +161,8 @@ public class DemarrerBatailleNavale {
 			GrilleGui gui){
 
 		while(!flotte.jeuTermine()){
-		
 
+			// appel de fonction afin d'obtenir un tir de la part de l'ordi
 			Coord tir = getTirOrdi(ordi, lequel);
 			
 			// Un tir de plus pour les stats.
@@ -212,13 +211,13 @@ public class DemarrerBatailleNavale {
 
 			case Constantes.PREMIERE_FOIS : {
 
-				tir =((JoueurPremiereFois) ordi).getTir();
+				tir =((StrategieOrdiPremiereFois) ordi).getTir();
 
 			}break;
 
 			case Constantes.DEBUTANT :  {
 
-				tir =((JoueurDebutant) ordi).getTir();
+				tir =((StrategieOrdiDebutant) ordi).getTir();
 
 			}break;
 
@@ -253,13 +252,13 @@ public class DemarrerBatailleNavale {
 
 			case Constantes.PREMIERE_FOIS : {
 						
-				((JoueurPremiereFois) ordi).aviseTouche(tir);
+				((StrategieOrdiPremiereFois) ordi).aviseTouche(tir);
 				
 			}break;
 	
 			case Constantes.DEBUTANT :  {
 				
-				((JoueurDebutant) ordi).aviseTouche(tir);
+				((StrategieOrdiDebutant) ordi).aviseTouche(tir);
 				
 			}break;
 				

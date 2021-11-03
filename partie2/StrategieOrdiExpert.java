@@ -3,21 +3,28 @@ package partie2;
 import partie1.Constantes;
 import partie1.Coord;
 
+/**
+ * Fonction qui utilise une strategie qui decoule de StrategieOrdiAvance avec un petit plus.
+ * Apres avoir visites les deux diagonales, la strategie est de visites les deux lignes centrales
+ * (horizontale et verticale) de la grille en partant du centre.
+ */
 public class StrategieOrdiExpert extends StrategieOrdiAvance{
 
-    /*
-    Partez de la strategie avancee et essayez d’ajouter une variante qui ameliore cette
-    strategie (pas besoin d’être complique).
-     */
-
+    // constante qui represente le milieu de la grille
     final private int GRILLE_MILIEU = Constantes.TAILLE / 2;
 
+    // deux boolean qui indique si l'on doit traiter les deux lignes centrales
     boolean traiteLigneHorizontale;
     boolean traiteLigneVerticalie;
 
 
+    /**
+     * constructeur par defaut qui initialise tous les collections necessaire
+     */
     public StrategieOrdiExpert(){
         super();
+
+        // initialisation des deux attributs de la classe qui n'etaient pas dans la classe parent
         traiteLigneHorizontale = false;
         traiteLigneVerticalie = false;
     }
@@ -32,8 +39,8 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
         /*                                *STRATEGIE*
         Si la collection est vide, les tirs generes sont sur la première diagonale.
         Si toutes les cases de cette diagonale ont ete visitees, on tire sur la deuxième
-        diagonale. Lorsque les deux diagonales ont toutes ete visees, on tire au hasard dans
-        des cases non deja touchees par un tir.
+        diagonale. Lorsque les deux diagonales ont toutes ete visees, on visite les deux lignes
+        centrales de la grille (horizontale et verticale) en partant du centre.
          */
 
         Coord pointTemporaire;
@@ -43,7 +50,7 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
             if (traitePremiereDiagonale) {
 
                 // tant que la coordonnee a deja ete jouer et que cDiag est dans la grille
-                while (UtilitaireCollection.tableauContientCoord(listeCoupsJouees, cDiag)
+                while (UtilitaireCollection.tableauContientCoord(listeCoupsJoues, cDiag)
                         && cDiag.colonne <= (Constantes.TAILLE - 1) && cDiag.ligne <= (Constantes.TAILLE - 1)) {
 
                     // on parcours la premiere diagonale
@@ -63,7 +70,7 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
             if (traiteDeuxiemeDiagonale) {
 
                 // tant que la coordonnee a deja ete jouer et que cDiag est dans la grille
-                while (UtilitaireCollection.tableauContientCoord(listeCoupsJouees, cDiag)
+                while (UtilitaireCollection.tableauContientCoord(listeCoupsJoues, cDiag)
                         && cDiag.colonne <= (Constantes.TAILLE - 1) && cDiag.ligne <= (Constantes.TAILLE - 1)) {
 
                     // on parcours la deuxieme diagonale
@@ -85,7 +92,7 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
                     && !traiteLigneVerticalie && !traiteLigneHorizontale){
 
                 // on tir des coups aleatoirement
-                cDiag = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJouees);
+                cDiag = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJoues);
             }
             pointTemporaire = new Coord(cDiag.ligne, cDiag.colonne);
         } else {
@@ -98,10 +105,10 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
 
                 // tant que la coordonnee a deja ete jouee et qu'il reste des coordonnees dans la
                 // collection
-            } while (UtilitaireCollection.tableauContientCoord(listeCoupsJouees, pointTemporaire)
+            } while (UtilitaireCollection.tableauContientCoord(listeCoupsJoues, pointTemporaire)
                     && listeCoordAdjacents.size() > 0);
         }
-        listeCoupsJouees.add(new Coord(pointTemporaire.ligne, pointTemporaire.colonne));
+        listeCoupsJoues.add(new Coord(pointTemporaire.ligne, pointTemporaire.colonne));
         return pointTemporaire;
     }
 
@@ -122,7 +129,7 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
             if (traiteLigneHorizontale){
                 pointTemp = new Coord(GRILLE_MILIEU,i);
 
-                if (!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemp)){
+                if (!UtilitaireCollection.tableauContientCoord(listeCoupsJoues,pointTemp)){
                     cDiag = new Coord(pointTemp.ligne, pointTemp.colonne);
                     return;
                 }
@@ -136,7 +143,7 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
 
                 pointTemp = new Coord(i,GRILLE_MILIEU);
 
-                if (!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,pointTemp)){
+                if (!UtilitaireCollection.tableauContientCoord(listeCoupsJoues,pointTemp)){
                     cDiag = new Coord(pointTemp.ligne, pointTemp.colonne);
                     return;
                 }
