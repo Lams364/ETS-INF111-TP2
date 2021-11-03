@@ -10,6 +10,11 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
     strategie (pas besoin d’être complique).
      */
 
+    boolean traiteLigneHorizontale = false;
+    boolean traiteLigneVerticalie = false;
+
+
+
     /**
      * fonction qui sert a obtenir le prochain point a tirer
      * @return
@@ -61,12 +66,19 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
                 // si cDiag a atteint une des bornes de la grille
                 if (cDiag.colonne > (Constantes.TAILLE -1)){
                     traiteDeuxiemeDiagonale = false;
+                    traiteLigneHorizontale = true;
                 }
 
             }
-            // si les deux diagonales ont ete traites
-            if (!traitePremiereDiagonale && !traiteDeuxiemeDiagonale){
-                cDiag = parcourirGrilleChessStyle();
+            if (traiteLigneHorizontale){
+                cDiag = parcourirLigneHorizontale();
+            }
+            if (traiteLigneVerticalie){
+                cDiag = parcourirLigneVerticale();
+            }
+            if (!traitePremiereDiagonale && !traiteDeuxiemeDiagonale
+                    && !traiteLigneVerticalie && !traiteLigneHorizontale){
+                cDiag = UtilitaireCollection.obtenirCoupPasDejaJouer(listeCoupsJouees);
             }
             pointTemporaire = new Coord(cDiag.ligne, cDiag.colonne);
         } else {
@@ -87,32 +99,62 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
     }
 
     /**
-     * Cette fonction permet de parcourir la grille a la maniere d'un jeu d'échec
+     * Cette fonction permet de sortir les points non-joues de la ligne horizontale
      * @return
      */
-    private Coord parcourirGrilleChessStyle(){
+    private Coord parcourirLigneHorizontale(){
 
-        Coord point = new Coord();
+        Coord point;
 
-        do {
-            for (int lign = 0; lign < Constantes.TAILLE - 1; lign++) {
+        //lookup table
+        int[] tableauColonneAExaminer = {3,5,2,6,1,7,0,8,9};
 
-                for (int col = 0; col < Constantes.TAILLE - 1; col += 2) {
 
-                    if ((lign % 2) != 0) {
-                        point = new Coord(lign, col + 1);
-                    } else {
-                        point = new Coord(lign,col);
-                    }
+        for (int i : tableauColonneAExaminer){
 
-                    if (!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,point)
-                            && UtilitaireFonctions.coordEstDansLaGrille(point)){
-                        return point;
-                    }
-                }
+            point = new Coord(4,i);
+
+            if (!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,point)) {
+                return point;
             }
-        } while (UtilitaireCollection.tableauContientCoord(listeCoupsJouees,point));
-        return point;
+        }
+        traiteLigneHorizontale = false;
+        traiteLigneVerticalie = true;
+        return null;
     }
+
+
+    /**
+     * Cette fonction permet de sortir les points non-joues de la ligne verticale
+     * @return
+     */
+    private Coord parcourirLigneVerticale(){
+
+        Coord point;
+
+        //lookup table
+        int[] tableauLigneAExaminer = {3,5,2,6,1,7,0,8,9};
+
+        for (int i : tableauLigneAExaminer){
+
+            point = new Coord(i,4);
+
+            if (!UtilitaireCollection.tableauContientCoord(listeCoupsJouees,point)) {
+                return point;
+            }
+        }
+        traiteLigneVerticalie = false;
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
 
 }
