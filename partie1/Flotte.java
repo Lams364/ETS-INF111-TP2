@@ -51,7 +51,9 @@ public class Flotte {
         for (Navire navireCourant : collectionDeNavires) {
         	
         	// On appel la verification du navire selon le tir
-            if (navireCourant.dejaRecuTir(tir)) return true;
+            if (navireCourant.dejaRecuTir(tir)) {
+            	return true;
+            }
         }
         return false;
     }
@@ -65,7 +67,9 @@ public class Flotte {
         for (Navire navireCourant : collectionDeNavires) {
         	
         	// Si le navire n'est pas coule, la fonction retourne false
-            if (!navireCourant.estCoule()) return false;
+            if (!navireCourant.estCoule()) {
+            	return false;
+            }
         }
         return true;
     }
@@ -89,7 +93,9 @@ public class Flotte {
         for (Navire navireCourant : collectionDeNavires) {
         	
         	// Si le navire est touche, retourne true
-            if (navireCourant.tirAtouche(tir)) return true;
+            if (navireCourant.tirAtouche(tir)) {
+            	return true;
+            }
         }
         return false;
     }
@@ -105,11 +111,15 @@ public class Flotte {
         for(Navire navireCourant : collectionDeNavires){
         	
         	// S'il y a du chevauchement, retourne le code d'erreur
-            if(navire.chevauche(navireCourant)) return NAVIRE_DEJA_SUR_PLACE;
+            if(navire.chevauche(navireCourant)) {
+            	return NAVIRE_DEJA_SUR_PLACE;
+            }
         }
         
         // Si le navire n'est pas dans la grille, retourne le code d'erreur
-        if (!navire.estDansLaGrille()) return POSITION_INVALIDE;
+        if (!navire.estDansLaGrille()) {
+        	return POSITION_INVALIDE;
+        }
 
         // Ajout du navire � la flotte et retour d'aucune erreur
         collectionDeNavires.add(navire);

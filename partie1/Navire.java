@@ -132,7 +132,9 @@ public class Navire {
         for(Coord pointCourant : listeCoupsTouches){
 
             // si le pointCourant est egal au tir, on retourne true
-            if (pointCourant.equals(tir)) return true;
+            if (pointCourant.equals(tir)) {
+            	return true;
+            }
         }
         // si on est sorti de la boucle, c'est qu'aucun point est egal au tir
         return false;
@@ -179,7 +181,9 @@ public class Navire {
             for (Coord pointThis : this.listeCoordonnes){
             	
             	// Si les deux points sont egaux, on retourne true
-                if(pointNavireAutre.equals(pointThis)) return true;
+                if(pointNavireAutre.equals(pointThis)) {
+                	return true;
+                }
             }
          }
         // Si on est sortie de la boucle, cela veut dire qu'aucun point ne se chevauchait
@@ -216,7 +220,9 @@ public class Navire {
         for (Coord point : listeCoordonnes){
         	
         	// Retourne faux si le point depasse les bornes
-            if (point.colonne > Constantes.TAILLE || point.ligne > Constantes.TAILLE) return false;
+            if (point.colonne > Constantes.TAILLE || point.ligne > Constantes.TAILLE) {
+            	return false;
+            }
         }
         return true;
     }
