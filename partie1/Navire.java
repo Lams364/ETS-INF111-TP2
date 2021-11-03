@@ -38,10 +38,24 @@ public class Navire {
      */
     public Navire (String nom, Coord coordDebut, Coord coordFin, Color couleur){
 
-        // calcul des nombres de colonnes et de lignes du navire
+    	// Appel des fonctions pour verifier la validite du navire et l'ajoute au tableau
+    	exceptionsNavire(coordDebut, coordFin);
+    	remplissageNavire(coordDebut, coordFin);
+        
+        // Copie des attributs directs
+        this.nom = nom;
+        this.couleur = couleur;
+    }
+
+    /**
+     * verifie la validite des dimensions fournies et retourne l'erreur si necessaire
+     */
+    public void exceptionsNavire(Coord coordDebut, Coord coordFin) {
+    	// calcul des nombres de colonnes et de lignes du navire
         int nbColonne = coordFin.colonne - coordDebut.colonne +1;
         int nbLigne = coordFin.ligne - coordDebut.ligne +1;
 
+        
         // Les messages d'exception possibles sont :
         
         // Le nombre de lignes est plus grand que 1 et les colonnes sont differentes
@@ -66,10 +80,15 @@ public class Navire {
                 || coordFin.colonne >= Constantes.TAILLE)){
             throw new IllegalArgumentException("Colonne invalide");
         }
-
-        // Copie des attributs directs
-        this.nom = nom;
-        this.couleur = couleur;
+    }
+    
+    /**
+     * remplis les cases couvertes par le navire selon sa direction
+     */
+    public void remplissageNavire(Coord coordDebut, Coord coordFin) {
+    	
+    	int nbColonne = coordFin.colonne - coordDebut.colonne +1;
+        int nbLigne = coordFin.ligne - coordDebut.ligne +1;
 
         // Copie de l'orientation et de la longueur selon la direction du navire
         if (nbLigne > nbColonne){
@@ -93,35 +112,13 @@ public class Navire {
             }
         }
     }
-
     
     /**
      * estCoule: retourne vrai si le navire est coule
      * @return: boolean navire coule ou non
      */
     public boolean estCoule(){
-
-        // creation d'une nouvelle liste temporaire afin d'enregistrer les differentes 
-    	// cases de listeCoupsTouches.
-        ArrayList<Coord> listeTemporaireCoupsTouche = new ArrayList<Coord>();
-        
-        if(listeCoupsTouches.size() == 0) {
-        	return false;
-        }
-        
-        listeTemporaireCoupsTouche.add(listeCoupsTouches.get(0));
-
-        // Pour tous les coups touches du navire, on ajoute ceux uniques a la liste temporaire
-        for (Coord pointCoupsTouches : listeCoupsTouches) {
-
-                // Si le point de coupsTouche n'est pas dans la liste temporaire, on l'ajoute
-                if(!listeTemporaireCoupsTouche.contains(pointCoupsTouches)){
-                    listeTemporaireCoupsTouche.add(pointCoupsTouches);
-                }
-        }
-
-        // On evalue la quantite de coups dans la liste temporaire compare a la longueur du navire
-        return listeTemporaireCoupsTouche.size() == longueur; // >= ou == ???
+        return longueur == listeCoupsTouches.size();
     }
 
     /**
@@ -200,7 +197,9 @@ public class Navire {
         for (Coord point : listeCoordonnes){
 
             // si le tir est egal au point du navire, on retourne true
-            if(point.equals(tir)) return true;
+            if(point.equals(tir)) {
+            	return true;
+            }
         }
         // si on sort de la boucle, cela veut dire qu'aucun point etait egal au tir.
         // On retourne donc false

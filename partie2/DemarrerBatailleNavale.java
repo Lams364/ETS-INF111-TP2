@@ -87,17 +87,6 @@ public class DemarrerBatailleNavale {
 		// On cr�e une nouvelle flotte al�atoire et on la montre.
 		Flotte flotteOrdi = Flotte.obtenirFlotteAleatoire();
 
-		// navire et coord pour but de test
-
-//		Flotte flotteOrdi = new Flotte();
-//		Navire navire1 = new Navire("elDorado",new Coord(4,3),new Coord(4,6), Color.MAGENTA);
-//		Navire navire2 = new Navire("ElColones",new Coord(5,8),new Coord(9,8),Color.CYAN);
-//		Navire navire3 = new Navire("Commando",new Coord(8,4),new Coord(8,6),Color.CYAN);
-//		flotteOrdi.ajouterNavire(navire1);
-//		flotteOrdi.ajouterNavire(navire2);
-//		flotteOrdi.ajouterNavire(navire3);
-
-
 		UtilitaireGrilleGui.montrerFlotte(flotteOrdi, gui);
 
 		// On attend que l'utilisateur clique sur un des boutons d'options.
@@ -107,7 +96,7 @@ public class DemarrerBatailleNavale {
 
 		// On remet la page blanche pour v�rifier que l'application trouve bien 
 		// les navires.
-		//UtilitaireGrilleGui.reinitialiserGui(gui);
+		UtilitaireGrilleGui.reinitialiserGui(gui);
 
 		// On obtient l'option du menu qui a �t� cliqu�.
 		String menu = gui.getOptionMenuClique();

@@ -2,7 +2,6 @@ package partie1;
 
 import java.awt.*;
 import java.util.*;
-import partie2.*;
 
 /**
  * Classe qui construit une flotte de navires
@@ -27,6 +26,8 @@ public class Flotte {
     public final int SUD = 2;
     public final int EST = 3;
     public final int OUEST = 4;
+    public final int DIRECTIONS = 4;
+    public final int NB_NAVIRE = 5;
 
     // Liste qui va contenir les navires de la flotte
     public ArrayList<Navire> collectionDeNavires = new ArrayList<>();
@@ -36,10 +37,7 @@ public class Flotte {
      * Constructeur qui va initaliser une flotte de 5 navires
      */
     public Flotte(){
-        ArrayList<Navire> collectionDeNavires = new ArrayList<>();
-
-        // etablir la taille minimal du arraylist a 5 afin qu'il n'aille pas a s'agrandir
-        collectionDeNavires.ensureCapacity(5);
+        ArrayList<Navire> collectionDeNavires = new ArrayList<>(NB_NAVIRE);
     }
 
     /**
@@ -77,7 +75,7 @@ public class Flotte {
      * @return partie1.Navire[]
      */
     public Navire[] getTabNavires(){
-        return collectionDeNavires.toArray(new Navire[0]);
+        return collectionDeNavires.toArray(new Navire[NB_NAVIRE]);
     }
 
     /**
@@ -138,8 +136,8 @@ public class Flotte {
         do{
         	// On cree une partie1.Coord initiale aleatoire qui ira dans une direction aleatoire aussi
         	// La longueur est ajustee pour ne pas inclure la partie1.Coord de debut
-            coordDebut = new Coord(rand.nextInt(10),rand.nextInt(10));
-            direction = rand.nextInt(4) + 1;
+            coordDebut = new Coord(rand.nextInt(Constantes.TAILLE),rand.nextInt(Constantes.TAILLE));
+            direction = rand.nextInt(DIRECTIONS) + 1;
             int longueurAjuste = longueur - 1;
             
             // Dependemment de la direction, on attribue une ligne ou colonne adittionee a la
@@ -234,7 +232,7 @@ public class Flotte {
     }
 
     /**
-     * Cr�e une flotte, g�n�re la position des navires al�atoire (appel du SP pr�c�dent) et
+     * Cree une flotte, genere la position des navires aleatoire (appel du SP precedent) et
      * la retourne.
      * @return partie1.Flotte cree
      */
