@@ -197,17 +197,16 @@ public class Navire {
      */
     private boolean positionTouche(Coord tir){
 
-        // Pour tous les points couvert par le navire
-        for (Coord point : listeCoordonnes){
-
-            // si le tir est egal au point du navire, on retourne true
-            if(point.equals(tir)) {
-            	return true;
-            }
-        }
-        // si on sort de la boucle, cela veut dire qu'aucun point etait egal au tir.
-        // On retourne donc false
-        return false;
+    	// on verifie que le tir se trouve entre le debut et la fin du navire
+    	// si c'est le cas pour les lignes et les colonnes, c'est un touche
+    	if(listeCoordonnes.get(0).ligne <= tir.ligne &&
+    	   listeCoordonnes.get(longueur - 1).ligne >= tir.ligne &&
+    	   listeCoordonnes.get(0).colonne <= tir.colonne &&
+    	   listeCoordonnes.get(longueur - 1).colonne >= tir.colonne) {
+    		return true;
+    	}
+    	
+    	return false;
     }
 
     /**
@@ -220,7 +219,8 @@ public class Navire {
         for (Coord point : listeCoordonnes){
         	
         	// Retourne faux si le point depasse les bornes
-            if (point.colonne > Constantes.TAILLE || point.ligne > Constantes.TAILLE) {
+            if (point.colonne > Constantes.TAILLE || point.ligne > Constantes.TAILLE
+            	|| point.colonne < 0 || point.ligne < 0) {
             	return false;
             }
         }
