@@ -235,6 +235,7 @@ public class GrilleGui  implements Runnable{
 	public void setCouleurFond(Coord c, Color couleurFond){
 		
 	        grille[c.ligne][c.colonne].setBackground(couleurFond);
+			// ajout de commande pour la version TODO
 	        grille[c.ligne][c.colonne].setOpaque(true);
 	}
 
@@ -275,7 +276,7 @@ public class GrilleGui  implements Runnable{
 		cadre.setDefaultCloseOperation(modeFermeture);
 		
 		// Plein �cran
-		cadre.setSize(2560,1600);
+		cadre.setSize(2560,1600); // ajout de commande pour la version MAC TODO
 		cadre.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		// On ne bouge plus la taille.

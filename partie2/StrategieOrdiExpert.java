@@ -78,16 +78,17 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
                     cDiag.colonne++;
                 }
                 // si cDiag a atteint une des bornes de la grille
-                if (cDiag.colonne > (Constantes.TAILLE -1)){
+                if (cDiag.colonne > (Constantes.TAILLE - 1)){
                     traiteDeuxiemeDiagonale = false;
                     traiteLigneHorizontale = true;
                 }
 
             }
 
+            // appel de fonction afin de parcourir les deux lignes centrales
             parcourirLigneHorVert();
 
-            // si tous les les lignes et diagonales sont fait
+            // si les lignes centrales et diagonales sont fait
             if (!traitePremiereDiagonale && !traiteDeuxiemeDiagonale
                     && !traiteLigneVerticalie && !traiteLigneHorizontale){
 
@@ -108,32 +109,42 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
             } while (UtilitaireCollection.tableauContientCoord(listeCoupsJoues, pointTemporaire)
                     && listeCoordAdjacents.size() > 0);
         }
+        // on ajoute le point qui sera joue dans la la collection qui comprend tous les cases
+        // deja jouees
         listeCoupsJoues.add(new Coord(pointTemporaire.ligne, pointTemporaire.colonne));
         return pointTemporaire;
     }
 
     /**
-     * Cette fonction permet de sortir les points non-joues de la ligne horizontale
+     * Cette fonction permet de sortir les points non-joues des lignes centrales (horizontale et
+     * verticale).
      * @return
      */
     private void parcourirLigneHorVert(){
 
         Coord pointTemp;
 
-        //lookup table
-        int[] tableauAExaminer = {3,5,2,6,1,7,0,8,9};
+        // table avec les points/colonne a visiter
+        int[] tableauAVisiter = {3,5,2,6,1,7,0,8,9};
 
-
-        for (int i : tableauAExaminer){
+        // pour tous les coord dans le tableau
+        for (int i : tableauAVisiter){
 
             if (traiteLigneHorizontale){
+
+                // on assigne le point temporaire a la ligne milieu (4) et a la colonne i
                 pointTemp = new Coord(GRILLE_MILIEU,i);
 
+                // s'il n'a pas deja ete joue
                 if (!UtilitaireCollection.tableauContientCoord(listeCoupsJoues,pointTemp)){
+
+                    // on assigne cDiag au coordonne du point temporaire
                     cDiag = new Coord(pointTemp.ligne, pointTemp.colonne);
                     return;
                 }
-                if (i == tableauAExaminer[tableauAExaminer.length - 1]){
+
+                // si on a fait tous les points a visiter
+                if (i == tableauAVisiter[tableauAVisiter.length - 1]){
                     traiteLigneHorizontale = false;
                     traiteLigneVerticalie = true;
                 }
@@ -141,13 +152,19 @@ public class StrategieOrdiExpert extends StrategieOrdiAvance{
             }
             if (traiteLigneVerticalie){
 
+                // on assigne le point temporaire a la colonne milieu (4) et a la ligne i
                 pointTemp = new Coord(i,GRILLE_MILIEU);
 
+                // s'il n'a pas deja ete joue
                 if (!UtilitaireCollection.tableauContientCoord(listeCoupsJoues,pointTemp)){
+
+                    // on assigne cDiag au coordonne du point temporaire
                     cDiag = new Coord(pointTemp.ligne, pointTemp.colonne);
                     return;
                 }
-                if (i == tableauAExaminer[tableauAExaminer.length - 1]){
+
+                // si on a fait tous les points a visiter
+                if (i == tableauAVisiter[tableauAVisiter.length - 1]){
                     traiteLigneHorizontale = false;
                     traiteLigneVerticalie = false;
                 }

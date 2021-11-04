@@ -56,7 +56,7 @@ public class DemarrerBatailleNavale {
 		// Laisse le temps de creer le gui.
 		UtilitaireGrilleGui.pause(250);
 
-		// Boucle virtuellement infinie.  Le programme quitte sur X du gui.
+		// Boucle virtuellement infinie. Le programme quitte sur X du gui.
 		boolean quitter = false;
 
 		// tant que quitter n'est pas true
@@ -192,13 +192,11 @@ public class DemarrerBatailleNavale {
 		}
 	}
 
-	/*
+	/**
 	 * Retourne le tir selon le niveau du joueur fourni
 	 * avec le deuxieme parametre.
-	 * 
 	 * @param ordi
 	 * @param lequel Le niveau du joueur
-	 * 
 	 * @return La coord du tir de l'ordi.
 	 */
 	private static Coord getTirOrdi(Object ordi, int lequel){

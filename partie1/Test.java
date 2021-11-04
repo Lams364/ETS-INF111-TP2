@@ -19,6 +19,8 @@ import java.util.*;
 
 public class Test {
 
+    final static private int TEMPS_PAUSE = 100;
+
     public static void main(String[] args) {
     	testMontrerFlotte();
     }
@@ -54,7 +56,7 @@ public class Test {
         
         
         // Pause pour permettre le transfert d'information
-        UtilitaireGrilleGui.pause(100);
+        UtilitaireGrilleGui.pause(TEMPS_PAUSE);
         
         // Appel de montrerFlotte
         UtilitaireGrilleGui.montrerFlotte(flotteAleatoire,grille);

@@ -87,8 +87,8 @@ public class Navire {
      */
     public void remplissageNavire(Coord coordDebut, Coord coordFin) {
     	
-    	int nbColonne = coordFin.colonne - coordDebut.colonne +1;
-        int nbLigne = coordFin.ligne - coordDebut.ligne +1;
+    	int nbColonne = coordFin.colonne - coordDebut.colonne + 1;
+        int nbLigne = coordFin.ligne - coordDebut.ligne + 1;
 
         // Copie de l'orientation et de la longueur selon la direction du navire
         if (nbLigne > nbColonne){
@@ -100,7 +100,7 @@ public class Navire {
         }
 
         // Pour toute la longueur du navire,
-        for (int i=0;i<longueur;i++){
+        for (int i = 0;i < longueur;i++){
         	
         	// Dependamment de son orientation, on remplis son ArrayList avec les points couverts
             if(orientation.equals(NS)){
